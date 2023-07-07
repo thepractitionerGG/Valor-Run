@@ -9,27 +9,43 @@ public class PlayerController : MonoBehaviour
     public static GameObject player;
     public static GameObject curretPlatorm;
     bool canTurn = false;
-
+    public static bool isDead = false;
     Vector3 startPosition;
     private void OnCollisionEnter(Collision collision)
     {
-        curretPlatorm = collision.gameObject;
+        if (collision.gameObject.tag == "Fire")
+        {
+            anim.SetTrigger("isDead");
+            isDead = false;
+        }
+
+        else
+            curretPlatorm = collision.gameObject;
+       
+       
     }
     void Start()
     {
         anim = GetComponent<Animator>();
         player = this.gameObject;
         GenrateWorld.RunDummy();
-
+        
         startPosition = player.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other is BoxCollider && GenrateWorld.lastPlatForm.tag!="platformTSection")
-              GenrateWorld.RunDummy();
+        if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") // will generate world if t section is not the lastplatform, for that move to update 
+        {
+            GenrateWorld.RunDummy(); // To Genrate world for more then one tile writ this line of code multiple times, it will only break if there is a t sectin formed after a tsection
 
-        if(other is SphereCollider)
+            GenrateWorld.RunDummy();
+            GenrateWorld.RunDummy();
+            GenrateWorld.RunDummy();
+            GenrateWorld.RunDummy();
+        }
+
+        if (other is SphereCollider)
         {
             canTurn = true;
         }
@@ -72,10 +88,10 @@ public class PlayerController : MonoBehaviour
             GenrateWorld.dummyTraveller.transform.forward = -transform.forward;
             GenrateWorld.RunDummy();
 
-            if (GenrateWorld.lastPlatForm.tag != "platformTSection")
+            if (GenrateWorld.lastPlatForm.tag != "platformTSection") // to genrate further as we can call genreate.runDmmy multiple times to make unlimited world
                 GenrateWorld.RunDummy();
 
-            transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
+            transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z); // for aliging the position of our player after a turn;
         }
 
         else if (Input.GetKeyDown(KeyCode.LeftArrow)&&canTurn)
@@ -86,17 +102,18 @@ public class PlayerController : MonoBehaviour
 
             if (GenrateWorld.lastPlatForm.tag != "platformTSection")
                 GenrateWorld.RunDummy();
+
             transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
         }
 
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Translate(-0.3f,0,0);
+            transform.Translate(-0.5f,0,0);
         }
 
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Translate(0.3f, 0, 0);
+            transform.Translate(0.5f, 0, 0);
         }
     }
 

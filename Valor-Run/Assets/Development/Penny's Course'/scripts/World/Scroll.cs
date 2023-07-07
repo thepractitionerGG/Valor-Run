@@ -6,7 +6,10 @@ public class Scroll : MonoBehaviour
 {
     private void FixedUpdate()
     {
-        this.transform.position += PlayerController.player.transform.forward * -0.1f;
+        if (PlayerController.isDead)
+            return;
+
+        this.transform.position += PlayerController.player.transform.forward * -0.15f;
 
         if (PlayerController.curretPlatorm == null)
             return;
