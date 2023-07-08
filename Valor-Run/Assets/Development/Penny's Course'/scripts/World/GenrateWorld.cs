@@ -24,7 +24,7 @@ public class GenrateWorld : MonoBehaviour
                 dummyTraveller.transform.position = lastPlatForm.transform.position + PlayerController.player.transform.forward * 20;
 
             else
-                dummyTraveller.transform.position = lastPlatForm.transform.position + PlayerController.player.transform.forward * 10;
+                dummyTraveller.transform.position = lastPlatForm.transform.position + PlayerController.player.transform.forward * 20;
 
 
             if (lastPlatForm.tag == "stairsUp")
