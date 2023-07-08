@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
     bool canTurn = false;
     public static bool isDead = false;
     Vector3 startPosition;
+    Rigidbody rb;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Fire")
         {
             anim.SetTrigger("isDead");
-            isDead = false;
+            isDead = true;
         }
 
         else
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         player = this.gameObject;
         GenrateWorld.RunDummy();
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetBool("isJumping", true);
+            rb.AddForce(Vector3.up * 200);
         }
 
         else if (Input.GetKeyDown(KeyCode.M))
