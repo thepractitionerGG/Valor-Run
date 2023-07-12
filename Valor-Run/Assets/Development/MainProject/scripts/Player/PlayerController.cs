@@ -22,8 +22,7 @@ public class PlayerController : MonoBehaviour
 
         else
             curretPlatorm = collision.gameObject;
-       
-       
+
     }
     void Start()
     {
