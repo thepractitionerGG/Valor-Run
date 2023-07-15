@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     public static GameObject player;
     public static GameObject curretPlatorm;
     bool canTurn = false;
+    public static bool inAir = false;
     public static bool isDead = false;
     Vector3 startPosition;
     Rigidbody rb;
 
     private void OnCollisionEnter(Collision collision)
     {
+        inAir = false;
         if (collision.gameObject.tag == "Obstacle")
         {
             anim.SetTrigger("isDead");
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
             
 
     }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+      
+        
         if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") // will generate world if t section is not the lastplatform, for that move to update 
         {
             GenrateWorld.RunDummy(); // To Genrate world for more then one tile writ this line of code multiple times, it will only break if there is a t sectin formed after a tsection
@@ -73,8 +78,9 @@ public class PlayerController : MonoBehaviour
     void LateUpdate()
     {
         if (isDead) return;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&!inAir)
         {
+            inAir = true;
             anim.SetBool("isJumping", true);
             rb.AddForce(Vector3.up * 200);
         }

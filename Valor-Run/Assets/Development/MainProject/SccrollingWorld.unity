@@ -324,38 +324,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 424788610, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: field of view
-      value: 87.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 424788610, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: far clip plane
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9975878
-      objectReference: {fileID: 0}
-    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.06941566
-      objectReference: {fileID: 0}
-    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 7.961
-      objectReference: {fileID: 0}
     - target: {fileID: 345566784467415734, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
       propertyPath: m_Name
       value: AstroDude
@@ -487,6 +455,18 @@ MonoBehaviour:
     amount: 3
     expandble: 0
   - prfab: {fileID: 4172238599528454436, guid: 6a739c6eaa0771b44a41c6688b5ac779, type: 3}
+    amount: 3
+    expandble: 0
+  - prfab: {fileID: 4172238599528454436, guid: db98e03e231d60749b0eabe5f1e93bdc, type: 3}
+    amount: 3
+    expandble: 0
+  - prfab: {fileID: 8964971839418570138, guid: c98d0c7b28001a54a8f2b764336b529e, type: 3}
+    amount: 3
+    expandble: 0
+  - prfab: {fileID: 881428827688328729, guid: b3a801a53e77b5d498bfc7e4096cdcca, type: 3}
+    amount: 3
+    expandble: 0
+  - prfab: {fileID: 2705641852034780248, guid: d1b400a70b9eee948b76fddff38e9d6d, type: 3}
     amount: 3
     expandble: 0
   pooldItems: []
@@ -632,7 +612,7 @@ GameObject:
   - component: {fileID: 1568009410}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
