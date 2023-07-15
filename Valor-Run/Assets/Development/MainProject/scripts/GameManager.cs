@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public Text scoreTextbox = null;
     public int score;
 
-    public static float maxLeftSide = -2.5f;
-    public static float maxRightSide = 2.5f;
+    public static float maxLeftSide = 2.4f;
+    public static float maxRightSide = -2.4f;
 
     private void Awake()
     {

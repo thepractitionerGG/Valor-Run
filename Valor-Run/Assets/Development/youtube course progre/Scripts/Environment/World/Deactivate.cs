@@ -12,6 +12,7 @@ public class Deactivate : MonoBehaviour
         {
             Invoke("SetInactive", 4.0f);
             dScheduled = true;
+
         }
            
     }

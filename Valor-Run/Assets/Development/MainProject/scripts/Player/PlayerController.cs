@@ -12,16 +12,20 @@ public class PlayerController : MonoBehaviour
     public static bool isDead = false;
     Vector3 startPosition;
     Rigidbody rb;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Fire")
+        if (collision.gameObject.tag == "Obstacle")
         {
             anim.SetTrigger("isDead");
             isDead = true;
         }
 
         else
+        {
             curretPlatorm = collision.gameObject;
+        }
+            
 
     }
     void Start()
@@ -39,11 +43,6 @@ public class PlayerController : MonoBehaviour
         if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") // will generate world if t section is not the lastplatform, for that move to update 
         {
             GenrateWorld.RunDummy(); // To Genrate world for more then one tile writ this line of code multiple times, it will only break if there is a t sectin formed after a tsection
-
-            GenrateWorld.RunDummy();
-            GenrateWorld.RunDummy();
-            GenrateWorld.RunDummy();
-            GenrateWorld.RunDummy();
         }
 
         if (other is SphereCollider)
@@ -71,7 +70,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (isDead) return;
         if (Input.GetKeyDown(KeyCode.Space))
@@ -109,16 +108,16 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
         }
 
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A)&&transform.position.x < GameManager.maxLeftSide )
         {
-            transform.Translate(-0.5f,0,0);
+            transform.Translate(-2.5f,0,0);
         }
 
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D) && transform.position.x > GameManager.maxRightSide)
         {
-            transform.Translate(0.5f, 0, 0);
+            transform.Translate(2.5f, 0, 0);
         }
     }
-
-
 }
+
+
