@@ -337,8 +337,24 @@ PrefabInstance:
       value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.82
+      value: -4.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9975878
+      objectReference: {fileID: 0}
+    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.06941566
+      objectReference: {fileID: 0}
+    - target: {fileID: 424788611, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 7.961
       objectReference: {fileID: 0}
     - target: {fileID: 345566784467415734, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
       propertyPath: m_Name
@@ -464,19 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - prfab: {fileID: 8321895896317246970, guid: 8155bb31d40d4554ebba7f4b2596eb4b, type: 3}
-    amount: 3
-    expandble: 0
   - prfab: {fileID: 8321895896317246970, guid: 4faaa059b5e209b408bef11a162be3c7, type: 3}
-    amount: 3
-    expandble: 0
-  - prfab: {fileID: 8964971839418570138, guid: c98d0c7b28001a54a8f2b764336b529e, type: 3}
-    amount: 3
-    expandble: 0
-  - prfab: {fileID: 881428827688328729, guid: b3a801a53e77b5d498bfc7e4096cdcca, type: 3}
-    amount: 3
-    expandble: 0
-  - prfab: {fileID: 2705641852034780248, guid: d1b400a70b9eee948b76fddff38e9d6d, type: 3}
     amount: 3
     expandble: 0
   - prfab: {fileID: 4172238599528454436, guid: c5ee3b3a611c65640b032bf6e500cfbb, type: 3}

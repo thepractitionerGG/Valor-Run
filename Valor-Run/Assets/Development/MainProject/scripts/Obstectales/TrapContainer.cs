@@ -10,21 +10,24 @@ public class TrapContainer : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            obstacles.Add(transform.GetChild(0).gameObject);
+            if (!obstacles.Contains(transform.GetChild(i).gameObject))
+            {
+                obstacles.Add(transform.GetChild(i).gameObject);
+            }
+           
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             StartCoroutine(StartTraps());
         }
     }
-
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.gameObject.tag == "Player" && gameObject.transform.position.z > 25) 
+        if (collision.gameObject.tag == "Player" && gameObject.transform.position.z > 25)
         {
             ResetTraps();
         }
@@ -34,7 +37,8 @@ public class TrapContainer : MonoBehaviour
     {
         foreach (GameObject g in obstacles)
         {
-            yield return new WaitForSeconds(.2f);
+            Debug.Log(g.name);
+            yield return new WaitForSeconds(.01f);
             g.SetActive(true);
             g.GetComponent<MovableObject>().SetSpeedRequired();
         }

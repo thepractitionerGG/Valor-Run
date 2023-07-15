@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MovableObject : MonoBehaviour
 {
-    private float speedArrow;
-    private float speedElephant;
+    private float speedArrow = 0;
+    private float speedElephant = 0;
 
     public void SetSpeedZero()
     {
@@ -15,7 +15,7 @@ public class MovableObject : MonoBehaviour
 
     public void SetSpeedRequired()
     {
-        speedArrow = 1f;
+        speedArrow = .20f;
         speedElephant = .05f;
     }
     private void FixedUpdate()
