@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class PlayerController : MonoBehaviour
     bool canTurn = false;
     public static bool inAir = false;
     public static bool isDead = false;
+    private Vector3 touchStartPosition;
     Vector3 startPosition;
     Rigidbody rb;
-
+    private float minSwipeDistance = 100f;
     private void OnCollisionEnter(Collision collision)
     {
         inAir = false;
@@ -78,7 +80,60 @@ public class PlayerController : MonoBehaviour
     void LateUpdate()
     {
         if (isDead) return;
-        if (Input.GetKeyDown(KeyCode.Space)&&!inAir)
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                // Store touch start position
+                touchStartPosition = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                // Calculate swipe distance
+                float swipeDistanceSide = touch.position.x - touchStartPosition.x;
+                float swipeUpDistance = touch.position.y - touchStartPosition.y;
+
+                if ( Mathf.Abs( swipeDistanceSide) > Mathf.Abs( swipeUpDistance))
+                {
+                    if (Mathf.Abs(swipeDistanceSide) > minSwipeDistance)
+                    {
+                       
+                        // Check swipe direction
+                        if (swipeDistanceSide < 0)
+                        {
+                            // Swipe left
+                           MoveLeft();
+                        }
+                        else if (swipeDistanceSide > 0)
+                        {
+                            // Swipe right
+                           MoveRight();
+                        }
+                    }
+                }
+
+                else
+                {
+                    if (Mathf.Abs(swipeUpDistance) > minSwipeDistance)
+                    {
+                        Jump();
+                    }
+                   
+                }
+               
+            }
+        }
+        
+       //Movement(); /// this and coment all the code above to play in Editor
+                   /// or comment this and exicute cocde above for android
+    }
+
+    private void Movement()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !inAir)
         {
             inAir = true;
             anim.SetBool("isJumping", true);
@@ -90,7 +145,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isMagic", true);
         }
 
-        else if (Input.GetKeyDown(KeyCode.RightArrow)&&canTurn)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && canTurn)
         {
             transform.Rotate(Vector3.up * 90);
             GenrateWorld.dummyTraveller.transform.forward = -transform.forward;
@@ -102,7 +157,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z); // for aliging the position of our player after a turn;
         }
 
-        else if (Input.GetKeyDown(KeyCode.LeftArrow)&&canTurn)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && canTurn)
         {
             transform.Rotate(-Vector3.up * 90);
             GenrateWorld.dummyTraveller.transform.forward = -transform.forward;
@@ -114,14 +169,40 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
         }
 
-        else if (Input.GetKeyDown(KeyCode.A)&&transform.position.x < GameManager.maxLeftSide )
+        else if (Input.GetKeyDown(KeyCode.A) && transform.position.x < GameManager.maxLeftSide)
         {
-            transform.Translate(-2.5f,0,0);
+            transform.Translate(-2.5f, 0, 0);
         }
 
         else if (Input.GetKeyDown(KeyCode.D) && transform.position.x > GameManager.maxRightSide)
         {
             transform.Translate(2.5f, 0, 0);
+        }
+    }
+
+    void MoveLeft()
+    {
+        if (transform.position.x < GameManager.maxLeftSide)
+        {
+            transform.Translate(-2.5f, 0, 0);
+        }
+    }
+
+    void MoveRight()
+    {
+        if (transform.position.x > GameManager.maxRightSide)
+        {
+            transform.Translate(2.5f, 0, 0);
+        }
+    }
+
+    void Jump()
+    {
+        if (!inAir)
+        {
+            inAir = true;
+            anim.SetBool("isJumping", true);
+            rb.AddForce(Vector3.up * 200);
         }
     }
 }
