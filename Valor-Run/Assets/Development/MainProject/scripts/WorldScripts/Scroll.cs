@@ -9,7 +9,7 @@ public class Scroll : MonoBehaviour
         if (PlayerController.isDead)
                 return;
 
-        this.transform.position += PlayerController.player.transform.forward * -0.15f;
+        this.transform.position += PlayerController.player.transform.forward * -9f*Time.deltaTime;
 
         if (PlayerController.curretPlatorm == null)
             return;

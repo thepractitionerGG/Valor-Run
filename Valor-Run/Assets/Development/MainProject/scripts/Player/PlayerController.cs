@@ -45,8 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-      
-        
+
         if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") // will generate world if t section is not the lastplatform, for that move to update 
         {
             GenrateWorld.RunDummy(); // To Genrate world for more then one tile writ this line of code multiple times, it will only break if there is a t sectin formed after a tsection
@@ -79,8 +78,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (isDead) return;
+      if (isDead) return;
 
+    #if UNITY_EDITOR
+            // Code to execute when running in the Unity Editor
+            MovementWindows();
+    #endif
+
+    #if UNITY_ANDROID
+        MovementAndroid();
+    #endif
+    }
+
+    private void MovementAndroid()
+    {
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -96,21 +107,21 @@ public class PlayerController : MonoBehaviour
                 float swipeDistanceSide = touch.position.x - touchStartPosition.x;
                 float swipeUpDistance = touch.position.y - touchStartPosition.y;
 
-                if ( Mathf.Abs( swipeDistanceSide) > Mathf.Abs( swipeUpDistance))
+                if (Mathf.Abs(swipeDistanceSide) > Mathf.Abs(swipeUpDistance))
                 {
                     if (Mathf.Abs(swipeDistanceSide) > minSwipeDistance)
                     {
-                       
+
                         // Check swipe direction
                         if (swipeDistanceSide < 0)
                         {
                             // Swipe left
-                           MoveLeft();
+                            MoveLeft();
                         }
                         else if (swipeDistanceSide > 0)
                         {
                             // Swipe right
-                           MoveRight();
+                            MoveRight();
                         }
                     }
                 }
@@ -121,17 +132,14 @@ public class PlayerController : MonoBehaviour
                     {
                         Jump();
                     }
-                   
+
                 }
-               
+
             }
         }
-        
-       //Movement(); /// this and coment all the code above to play in Editor
-                   /// or comment this and exicute cocde above for android
     }
 
-    private void Movement()
+    private void MovementWindows()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !inAir)
         {
@@ -206,5 +214,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
-
