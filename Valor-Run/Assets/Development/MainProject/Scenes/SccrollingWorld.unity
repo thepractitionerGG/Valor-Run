@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: c1867bf63dd606c4bb262972b7b64f9e, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 34dc288cbf7e17d479c2781ec928cac2, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1055952560}
-  m_IndirectSpecularColor: {r: 0.587835, g: 0.5077866, b: 0.62652427, a: 1}
+  m_IndirectSpecularColor: {r: 0.30504286, g: 0.22003642, b: 0.34850866, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -571,10 +571,10 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -690,19 +690,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - prfab: {fileID: 8341895221539210706, guid: 180f085610565c44db33cd6022c68022, type: 3}
-    amount: 5
+    amount: 3
     expandble: 0
   - prfab: {fileID: 393365276337361292, guid: 5c3297317ca34594190b1474d6a6e03d, type: 3}
-    amount: 5
+    amount: 3
     expandble: 0
   - prfab: {fileID: 841369570421830689, guid: a6496aa576666144d908972d8091f6c3, type: 3}
-    amount: 5
+    amount: 3
     expandble: 0
   - prfab: {fileID: 1141364145984005290, guid: e1678529b49554b41b5d324cdf7933b8, type: 3}
-    amount: 5
+    amount: 3
     expandble: 0
   - prfab: {fileID: 8904115835767950994, guid: f860540f50c3acc4c8d9a8f95e017a59, type: 3}
-    amount: 5
+    amount: 3
     expandble: 0
   pooldItems: []
 --- !u!4 &1249608185
