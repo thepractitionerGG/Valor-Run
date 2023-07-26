@@ -107,10 +107,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2725552048933589334, guid: 2dd0c39b530107543bc108cfa51a8cd8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2725552048933589334, guid: 2dd0c39b530107543bc108cfa51a8cd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -153,10 +149,6 @@ PrefabInstance:
     - target: {fileID: 3357657312670387180, guid: 2dd0c39b530107543bc108cfa51a8cd8, type: 3}
       propertyPath: m_Name
       value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 3653465158031292753, guid: 2dd0c39b530107543bc108cfa51a8cd8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dd0c39b530107543bc108cfa51a8cd8, type: 3}

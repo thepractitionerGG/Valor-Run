@@ -7,6 +7,7 @@ public class GenrateWorld : MonoBehaviour
   
      static public GameObject dummyTraveller;
      static public GameObject lastPlatForm;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -45,6 +46,8 @@ public class GenrateWorld : MonoBehaviour
             p.transform.position = dummyTraveller.transform.position;
         }
     }
+
+   
 
     
 }

@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     Vector3 startPosition;
     Rigidbody rb;
     private float minSwipeDistance = 100f;
+
+    int maxPlatformCount = 3;
     private void OnCollisionEnter(Collision collision)
     {
         inAir = false;
@@ -39,7 +41,8 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         player = this.gameObject;
         GenrateWorld.RunDummy();
-        
+        GenrateWorld.RunDummy();
+
         startPosition = player.transform.position;
     }
 
@@ -52,7 +55,11 @@ public class PlayerController : MonoBehaviour
 
         if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") // will generate world if t section is not the lastplatform, for that move to update 
         {
+            if (CounEnabledPlatforms() > maxPlatformCount)
+                return;
+           
             GenrateWorld.RunDummy(); // To Genrate world for more then one tile writ this line of code multiple times, it will only break if there is a t sectin formed after a tsection
+            GenrateWorld.RunDummy();
         }
 
         if (other is SphereCollider)
@@ -216,5 +223,21 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJumping", true);
             rb.AddForce(Vector3.up * 200);
         }
+    }
+
+
+    private int CounEnabledPlatforms() // this function is for counting howmany platfomrs are active in gameview ain game time and the tag is helping us to get idea
+    {
+        GameObject[] platforms = GameObject.FindGameObjectsWithTag("platformZ20f");
+
+        int count = 0;
+
+        foreach (GameObject platform in platforms)
+        {
+            if (platform.activeInHierarchy)
+                count++;
+        }
+
+        return count;
     }
 }
