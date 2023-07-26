@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2389530156765599804}
   - component: {fileID: 3029202976144817627}
   - component: {fileID: 2527322870051079544}
-  - component: {fileID: -2997514375255259747}
   m_Layer: 0
   m_Name: StartingPlatformZ_60Unit
   m_TagString: platformZ20f
@@ -139,27 +138,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.335166, y: 7.8943844, z: 1.3126591}
   m_Center: {x: 0, y: 4.188078, z: -29.343666}
---- !u!114 &-2997514375255259747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2834630174497241653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ebba4e1e5026a4894dbf3b65c59507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 0}
-  firePrefab: {fileID: 0}
-  arrowPrefab: {fileID: 0}
-  elephantPrefab: {fileID: 0}
-  spawnPoints: []
-  maxCoinsPerRow: 6
-  maxCoinRows: 1
-  maxFireRows: 1
-  maxArrowsPerRow: 4
-  maxElephantsPerRow: 1
-  coinGap: 1
-  obstacleSpeed: 5

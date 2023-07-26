@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
+    // coin genration problem is occuring here fix here only 
     GameObject[] obstacles;
     [SerializeField] GameObject[] coins;
 
@@ -23,12 +24,21 @@ public class ItemSpawner : MonoBehaviour
 
         float zValue = Random.Range(-30f,26f);
 
-       GameObject coinSet= Instantiate(currentCoinSet, new Vector3(xValue, 1.1f, zValue), Quaternion.identity,gameObject.transform);
+        GameObject coinSet = Instantiate(currentCoinSet, new Vector3(xValue, 1.1f, zValue), Quaternion.identity, gameObject.transform);
+
+        Debug.Log(coinSet.transform.position);
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnDisable()
     {
-        
+        foreach (Transform childTransform in transform)
+        {
+            if (gameObject.tag == "CoinRow")
+            {
+                Destroy(childTransform.gameObject);
+            }
+            
+        }
     }
 }

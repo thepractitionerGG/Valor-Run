@@ -12,10 +12,8 @@ public class Deactivate : MonoBehaviour
 
         if (other.gameObject.tag == "Player" && !dScheduled)
         {
-            Debug.Log("Jump");
-            Invoke("SetInactive", 4.0f);
+            Invoke("SetInactive", 2.0f);
             dScheduled = true;
-
         }
     }
     void SetInactive()
