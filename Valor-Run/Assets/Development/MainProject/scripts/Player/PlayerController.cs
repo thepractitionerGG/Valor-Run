@@ -20,7 +20,13 @@ public class PlayerController : MonoBehaviour
     int maxPlatformCount = 3;
     private void OnCollisionEnter(Collision collision)
     {
-        inAir = false;
+        if (inAir) // add a tag array for this and check if any platfomr tag comes it should 
+        {
+            inAir = false;
+            StopJummp(); 
+        }
+       
+
         if (collision.gameObject.tag == "Obstacle")
         {
             anim.SetTrigger("isDead");
@@ -117,6 +123,7 @@ public class PlayerController : MonoBehaviour
                 // Calculate swipe distance
                 float swipeDistanceSide = touch.position.x - touchStartPosition.x;
                 float swipeUpDistance = touch.position.y - touchStartPosition.y;
+                float swipeDownDistance = touchStartPosition.y - touch.position.y;
 
                 if (Mathf.Abs(swipeDistanceSide) > Mathf.Abs(swipeUpDistance))
                 {
@@ -142,6 +149,10 @@ public class PlayerController : MonoBehaviour
                     if (Mathf.Abs(swipeUpDistance) > minSwipeDistance)
                     {
                         Jump();
+                    }
+                    else if (Mathf.Abs(swipeDownDistance) > minSwipeDistance)
+                    {
+                        RollDown(); 
                     }
 
                 }
@@ -219,8 +230,18 @@ public class PlayerController : MonoBehaviour
         {
             inAir = true;
             anim.SetBool("isJumping", true);
-            rb.AddForce(Vector3.up * 450f);
+            rb.AddForce(Vector3.up * 650f);
         }
+    }
+
+    void RollDown()
+    {
+        if (!inAir)
+        {
+            return;
+        }
+
+        rb.AddForce(Vector3.down * 650);
     }
 
 
