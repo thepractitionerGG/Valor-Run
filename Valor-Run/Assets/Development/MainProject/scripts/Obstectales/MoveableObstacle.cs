@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableObject : MonoBehaviour
+public class MoveableObstacle : MonoBehaviour
 {
     private float speedArrow = 0;
     private float speedElephant = 0;
@@ -25,6 +25,20 @@ public class MovableObject : MonoBehaviour
 
         if(gameObject.name=="Elephant")
             transform.position += PlayerController.player.transform.forward * -speedElephant;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            speedArrow = 0;
+            speedElephant = 0f;
+
+            if (gameObject.GetComponent<Animator>() != null)
+            {
+                // stop animation if any
+            }
+        }
     }
 }
      

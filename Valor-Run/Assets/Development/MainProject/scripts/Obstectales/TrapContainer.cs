@@ -40,7 +40,7 @@ public class TrapContainer : MonoBehaviour
             Debug.Log(g.name);
             yield return new WaitForSeconds(.01f);
             g.SetActive(true);
-            g.GetComponent<MovableObject>().SetSpeedRequired();
+            g.GetComponent<MoveableObstacle>().SetSpeedRequired();
         }
     }
 
@@ -48,7 +48,7 @@ public class TrapContainer : MonoBehaviour
     {
         foreach (GameObject g in obstacles)
         {
-            g.GetComponent<MovableObject>().SetSpeedZero();
+            g.GetComponent<MoveableObstacle>().SetSpeedZero();
             g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y, -8);
             g.SetActive(false);
         }

@@ -154,9 +154,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !inAir)
         {
-            inAir = true;
-            anim.SetBool("isJumping", true);
-            rb.AddForce(Vector3.up * 200);
+            Jump();
         }
 
         else if (Input.GetKeyDown(KeyCode.M))
@@ -221,7 +219,7 @@ public class PlayerController : MonoBehaviour
         {
             inAir = true;
             anim.SetBool("isJumping", true);
-            rb.AddForce(Vector3.up * 200);
+            rb.AddForce(Vector3.up * 450f);
         }
     }
 
