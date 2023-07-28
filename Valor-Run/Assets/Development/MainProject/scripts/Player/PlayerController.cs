@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    // add swipe control where it works when swipe distance becomes more than 100
+
     Animator anim;
 
     public static GameObject player;
@@ -103,7 +105,7 @@ public class PlayerController : MonoBehaviour
     #endif
 
     #if UNITY_ANDROID
-        MovementAndroid();
+            MovementAndroid();
     #endif
     }
 
