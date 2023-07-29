@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.13333334, g: 0.22352941, b: 0.43529412, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.022
@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 862711862671811946}
   m_Layer: 0
   m_Name: StartingPlatformZ_60Unit
-  m_TagString: platformZ20f
+  m_TagString: platformStraight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
