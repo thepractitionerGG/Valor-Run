@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     private float minSwipeDistance = 100f;
 
     int maxPlatformCount = 3;
+    float jumpY = 4f;
+
+   
+
     private void OnCollisionEnter(Collision collision)
     {
         if (inAir) // add a tag array for this and check if any platfomr tag comes it should 
@@ -170,6 +174,11 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        else if (Input.GetKeyDown(KeyCode.S)&& inAir)
+        {
+            RollDown();
+        }
+
         else if (Input.GetKeyDown(KeyCode.M))
         {
             anim.SetBool("isMagic", true);
@@ -228,12 +237,30 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (!inAir)
+        StopAllCoroutines();
+        StartCoroutine(JumpCoroutine());
+        anim.SetBool("isJumping", true);
+
+        /// old addofrce code
+        //if (!inAir)
+        //{
+        //    inAir = true;
+        //    anim.SetBool("isJumping", true);
+        //    rb.AddForce(Vector3.up * 650f);
+        //}
+    }
+
+    IEnumerator JumpCoroutine()
+    {
+        while (transform.position.y < jumpY)
         {
-            inAir = true;
-            anim.SetBool("isJumping", true);
-            rb.AddForce(Vector3.up * 650f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3
+                (transform.position.x, transform.position.y + 4, transform.position.z), Time.deltaTime * 2f);
+            yield return null;
         }
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(RollDownCoroutine());
+
     }
 
     void RollDown()
@@ -243,13 +270,25 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        rb.AddForce(Vector3.down * 650);
+        StopAllCoroutines();
+        StartCoroutine(RollDownCoroutine());
+
+    }
+
+    IEnumerator RollDownCoroutine()
+    {
+        while (transform.position.y > startPosition.y)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3
+                (transform.position.x, startPosition.y, transform.position.z), Time.deltaTime * 4f);
+            yield return null;
+        }
     }
 
 
     private int CounEnabledPlatforms() // this function is for counting howmany platfomrs are active in gameview ain game time and the tag is helping us to get idea
     {
-        GameObject[] platforms = GameObject.FindGameObjectsWithTag("platformZ20f");
+        GameObject[] platforms = GameObject.FindGameObjectsWithTag("platformStraight");
 
         int count = 0;
 

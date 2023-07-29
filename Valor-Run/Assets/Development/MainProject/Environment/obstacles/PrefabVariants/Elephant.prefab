@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3493992605478243642, guid: 9093a0fae4aa13a49ad6370c817770e6, type: 3}
       propertyPath: m_Name
-      value: ElephantWalkAttack Variant
+      value: Elephant
       objectReference: {fileID: 0}
     - target: {fileID: 3493992605478243642, guid: 9093a0fae4aa13a49ad6370c817770e6, type: 3}
       propertyPath: m_TagString
@@ -90,7 +90,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119364775367695930}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.551061, y: 4.0483565, z: 5.503637}
@@ -107,3 +107,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250c910f21c6c7045b79b795ed30a4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingPos: {x: 0, y: 0, z: 0}
