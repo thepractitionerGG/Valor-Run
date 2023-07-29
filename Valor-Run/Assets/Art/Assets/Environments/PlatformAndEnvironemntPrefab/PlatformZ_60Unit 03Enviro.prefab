@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3980641618258312876}
   m_Layer: 0
   m_Name: PlatformZ_60Unit 03Enviro
-  m_TagString: platformZ20f
+  m_TagString: platformStraight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc688fca1cdc76e45aaf40cf99888db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveableObjects: []
 --- !u!65 &3980641618258312876
 BoxCollider:
   m_ObjectHideFlags: 0
