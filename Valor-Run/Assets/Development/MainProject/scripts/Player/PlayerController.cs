@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
                 // Store touch start position
                 touchStartPosition = touch.position;
             }
-            else if (touch.phase == TouchPhase.Ended)
+            else if ( Mathf.Abs(touch.position.x-touchStartPosition.x)> 100 || Mathf.Abs( touch.position.y- touchStartPosition.y) > 100)
             {
                 // Calculate swipe distance
                 float swipeDistanceSide = touch.position.x - touchStartPosition.x;
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Mathf.Abs(swipeDistanceSide) > Mathf.Abs(swipeUpDistance))
                 {
-                    if (Mathf.Abs(swipeDistanceSide) > minSwipeDistance)
+                    if (Mathf.Abs(swipeDistanceSide) > minSwipeDistance && touch.phase==TouchPhase.Ended)
                     {
 
                         // Check swipe direction
@@ -152,13 +152,14 @@ public class PlayerController : MonoBehaviour
 
                 else
                 {
-                    if (Mathf.Abs(swipeUpDistance) > minSwipeDistance)
+                    Debug.Log(swipeDownDistance+" "+swipeUpDistance);
+                    if (swipeUpDistance > minSwipeDistance)
                     {
                         Jump();
                     }
-                    else if (Mathf.Abs(swipeDownDistance) > minSwipeDistance)
+                    else if (swipeDownDistance > minSwipeDistance)
                     {
-                        RollDown(); 
+                        GoDown(); 
                     }
 
                 }
@@ -169,14 +170,14 @@ public class PlayerController : MonoBehaviour
 
     private void MovementWindows()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !inAir)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
 
-        else if (Input.GetKeyDown(KeyCode.S)&& inAir)
+        else if (Input.GetKeyDown(KeyCode.S))
         {
-            RollDown();
+            GoDown();
         }
 
         else if (Input.GetKeyDown(KeyCode.M))
@@ -186,37 +187,47 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.RightArrow) && canTurn)
         {
-            transform.Rotate(Vector3.up * 90);
-            GenrateWorld.dummyTraveller.transform.forward = -transform.forward;
-            GenrateWorld.RunDummy();
-
-            if (GenrateWorld.lastPlatForm.tag != "platformTSection") // to genrate further as we can call genreate.runDmmy multiple times to make unlimited world
-                GenrateWorld.RunDummy();
-
-            transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z); // for aliging the position of our player after a turn;
+            RightTurn();
         }
 
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && canTurn)
         {
-            transform.Rotate(-Vector3.up * 90);
-            GenrateWorld.dummyTraveller.transform.forward = -transform.forward;
-            GenrateWorld.RunDummy();
-
-            if (GenrateWorld.lastPlatForm.tag != "platformTSection")
-                GenrateWorld.RunDummy();
-
-            transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
+            LeftTurn();
         }
 
         else if (Input.GetKeyDown(KeyCode.A) && transform.position.x < GameManager.maxLeftSide)
         {
-            transform.Translate(-2.5f, 0, 0);
+            MoveLeft();
         }
 
         else if (Input.GetKeyDown(KeyCode.D) && transform.position.x > GameManager.maxRightSide)
         {
-            transform.Translate(2.5f, 0, 0);
+            MoveRight();
         }
+    }
+
+    private void RightTurn()
+    {
+        transform.Rotate(Vector3.up * 90);
+        GenrateWorld.dummyTraveller.transform.forward = -transform.forward;
+        GenrateWorld.RunDummy();
+
+        if (GenrateWorld.lastPlatForm.tag != "platformTSection") // to genrate further as we can call genreate.runDmmy multiple times to make unlimited world
+            GenrateWorld.RunDummy();
+
+        transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z); // for aliging the position of our player after a turn;
+    }
+
+    private void LeftTurn()
+    {
+        transform.Rotate(-Vector3.up * 90);
+        GenrateWorld.dummyTraveller.transform.forward = -transform.forward;
+        GenrateWorld.RunDummy();
+
+        if (GenrateWorld.lastPlatForm.tag != "platformTSection")
+            GenrateWorld.RunDummy();
+
+        transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
     }
 
     void MoveLeft()
@@ -236,55 +247,110 @@ public class PlayerController : MonoBehaviour
     }
 
     void Jump()
-    {
-        StopAllCoroutines();
-        StartCoroutine(JumpCoroutine());
-        anim.SetBool("isJumping", true);
+    {  
+        if (!inAir)
+        {
+            inAir = true;
+            StopAllCoroutines();
+            StartCoroutine(JumpCoroutine());
+        }
+        //anim.SetBool("isJumping", true);
 
-        /// old addofrce code
-        //if (!inAir)
-        //{
-        //    inAir = true;
-        //    anim.SetBool("isJumping", true);
-        //    rb.AddForce(Vector3.up * 650f);
-        //}
     }
 
     IEnumerator JumpCoroutine()
     {
-        while (transform.position.y < jumpY)
+       
+        float initialJumpSpeed = 6f; // Initial jump speed
+        float jumpDuration = 1f;   // Total jump duration in seconds
+        float elapsedTime = 0f;
+
+        while (elapsedTime < jumpDuration)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3
-                (transform.position.x, transform.position.y + 4, transform.position.z), Time.deltaTime * 2f);
+            float normalizedTime = elapsedTime / jumpDuration;
+            float jumpHeight = Mathf.Lerp(initialJumpSpeed, 0f, normalizedTime);
+
+            transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y + jumpHeight * Time.deltaTime,
+                transform.position.z
+            );
+
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(RollDownCoroutine());
+
+        StartCoroutine(GoDownCoroutine());
 
     }
 
-    void RollDown()
+    
+    void GoDown()
     {
         if (!inAir)
         {
             return;
         }
-
+        inAir = false;
         StopAllCoroutines();
-        StartCoroutine(RollDownCoroutine());
-
+        StartCoroutine(SlideDownCoroutine(.2f));
     }
 
-    IEnumerator RollDownCoroutine()
+    IEnumerator GoDownCoroutine()
     {
-        while (transform.position.y > startPosition.y)
+        float rollSpeed = 6f; // Speed at which the character rolls down
+        float minHeight = 1.8f; // The lowest height you want the character to reach
+
+        while (transform.position.y > minHeight)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3
-                (transform.position.x, startPosition.y, transform.position.z), Time.deltaTime * 4f);
+            transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y - rollSpeed * Time.deltaTime,
+                transform.position.z
+            );
+
+            // Ensure the character doesn't go below the minimum height
+            if (transform.position.y < minHeight)
+            {
+                transform.position = new Vector3(
+                    transform.position.x,
+                    minHeight,
+                    transform.position.z
+                );
+            }
+
             yield return null;
         }
     }
 
+    IEnumerator SlideDownCoroutine(float slideDuration)
+    {
+        float initialPosition = transform.position.y;
+        float targetPosition = 1.8f; // The ground level or minimum height
+        float elapsedTime = 0f;
+
+        while (elapsedTime < slideDuration)
+        {
+            float normalizedTime = elapsedTime / slideDuration;
+            float slideHeight = Mathf.Lerp(initialPosition, targetPosition, normalizedTime);
+
+            transform.position = new Vector3(
+                transform.position.x,
+                slideHeight,
+                transform.position.z
+            );
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Make sure to set the exact target position to avoid any inaccuracies
+        transform.position = new Vector3(
+            transform.position.x,
+            targetPosition,
+            transform.position.z
+        );
+    }
 
     private int CounEnabledPlatforms() // this function is for counting howmany platfomrs are active in gameview ain game time and the tag is helping us to get idea
     {
