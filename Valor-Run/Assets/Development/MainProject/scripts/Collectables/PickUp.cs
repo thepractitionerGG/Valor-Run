@@ -6,14 +6,17 @@ public class PickUp : MonoBehaviour
 {
     public int rotateSpeed = 100;
     MeshRenderer mrs;
-
+    GameManager gameManager;
     private void Start()
     {
         mrs = GetComponent<MeshRenderer>();
     }
     private void Update()
     {
-        if (PlayerController.isDead) return;
+        if (gameManager.GetGameState() != GameManager.GameState.Running)
+            return;
+
+       // if (PlayerController.isDead) return;
         transform.Rotate(0, rotateSpeed*Time.deltaTime, 0, Space.World);
     }
     private void OnTriggerEnter(Collider other)

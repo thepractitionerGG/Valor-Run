@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Scroll : MonoBehaviour
 {
+    GameManager gameManager; // Make SingleTon #
+
     private void FixedUpdate()
     {
-        if (PlayerController.isDead)
+        if (gameManager.GetGameState()!=GameManager.GameState.Running)
                 return;
 
         this.transform.position += PlayerController.player.transform.forward * -9f*Time.deltaTime;

@@ -9,9 +9,10 @@ public class MoveableObstacle : MonoBehaviour
     private float speedElephant = 0;
     private MeshRenderer mrs;
     [SerializeField] Vector3 startingPos;
-
+    GameManager gameManager;
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         SetSpeedRequired();
     }
     public void SetSpeedZero()
@@ -27,11 +28,14 @@ public class MoveableObstacle : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (PlayerController.isDead)
+        if (gameManager.GetGameState() != GameManager.GameState.Running)
         {
             StopAnimation();
             return;
         }
+
+        //if (PlayerController.isDead) shifting from is dead to inMenu or running Enum
+     
 
         if(gameObject.name=="Arrow")
             transform.position += PlayerController.player.transform.forward * -speedArrow;
@@ -55,7 +59,7 @@ public class MoveableObstacle : MonoBehaviour
 
     private void StopAnimation()
     {
-        
+        // stop animation here
     }
 
     private void OnEnable()
