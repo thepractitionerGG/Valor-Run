@@ -7,11 +7,11 @@ public class MoveableObstacle : MonoBehaviour
 {
     private float speedArrow = 0;
     private float speedElephant = 0;
-    private MeshRenderer mrs;
     [SerializeField] Vector3 startingPos;
-
+  
     private void Start()
     {
+       
         SetSpeedRequired();
     }
     public void SetSpeedZero()
@@ -27,11 +27,14 @@ public class MoveableObstacle : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (PlayerController.isDead)
+        if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running)
         {
             StopAnimation();
             return;
         }
+
+        //if (PlayerController.isDead) shifting from is dead to inMenu or running Enum
+     
 
         if(gameObject.name=="Arrow")
             transform.position += PlayerController.player.transform.forward * -speedArrow;
@@ -55,7 +58,7 @@ public class MoveableObstacle : MonoBehaviour
 
     private void StopAnimation()
     {
-        
+        // stop animation here
     }
 
     private void OnEnable()

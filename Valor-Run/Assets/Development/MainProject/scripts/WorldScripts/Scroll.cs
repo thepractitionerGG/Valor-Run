@@ -6,7 +6,7 @@ public class Scroll : MonoBehaviour
 {
     private void FixedUpdate()
     {
-        if (PlayerController.isDead)
+        if (GameManager.gameManagerSingleton.GetGameState()!=GameManager.GameState.Running)
                 return;
 
         this.transform.position += PlayerController.player.transform.forward * -9f*Time.deltaTime;

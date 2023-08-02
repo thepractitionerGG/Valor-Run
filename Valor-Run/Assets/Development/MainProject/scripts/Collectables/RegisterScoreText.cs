@@ -7,6 +7,6 @@ public class RegisterScoreText : MonoBehaviour
 {
     private void Start()
     {
-        GameManager.singleton.scoreTextbox = gameObject.GetComponent<Text>();
+        GameManager.gameManagerSingleton.coinCollected = gameObject.GetComponent<Text>();
     }
 }

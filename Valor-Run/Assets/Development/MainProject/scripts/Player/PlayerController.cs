@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    // add swipe control where it works when swipe distance becomes more than 100
-
     Animator anim;
 
     public static GameObject player;
@@ -16,46 +14,51 @@ public class PlayerController : MonoBehaviour
     public static bool isDead = false;
     private Vector3 touchStartPosition;
     Vector3 startPosition;
-    Rigidbody rb;
-    private float minSwipeDistance = 100f;
+   
+    private float minSwipeDistance = 200f;
 
     int maxPlatformCount = 3;
-    float jumpY = 4f;
 
-   
 
+    // create all thge variables for the runner here  total coins collected, HighScore, wings collected, highest distance traveled 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            // do the shlock tranissiton here #
+            anim.SetTrigger("isDead");
+            GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
+            GameManager.gameManagerSingleton._retryUI.SetActive(true);
+            // Make a Switch case in game manager which handles the case when a enum is changed only if teh game is becoming complex like this ;
+            // make a save score condition here
+            return;
+        }
+
         if (inAir) // add a tag array for this and check if any platfomr tag comes it should 
         {
             inAir = false;
             StopJummp(); 
         }
-       
-
-        if (collision.gameObject.tag == "Obstacle")
-        {
-            anim.SetTrigger("isDead");
-            isDead = true;
-        }
 
         else
         {
-            curretPlatorm = collision.gameObject;
+            curretPlatorm = collision.gameObject;  /// there might be and error here about the current platform not being 
+                                                   ///updated when we shift it while jumping #
         }
-            
-
     }
 
-    void Start()
+    public void StartRunning()
     {
-        rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
-        player = this.gameObject;
+        // set running animation here #
         GenrateWorld.RunDummy();
-        GenrateWorld.RunDummy();
+    }
 
+    private void Start()
+    {
+        player = this.gameObject;
         startPosition = player.transform.position;
+        anim = GetComponent<Animator>();
+        GenrateWorld.RunDummy();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,7 +68,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") // will generate world if t section is not the lastplatform, for that move to update 
+        if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") 
+            // will generate world if t section is not the lastplatform, for that move to update 
         {
             if (CounEnabledPlatforms() > maxPlatformCount)
                 return;
@@ -101,7 +105,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-      if (isDead) return;
+      if (GameManager.gameManagerSingleton.GetGameState()!=GameManager.GameState.Running) return;
 
     #if UNITY_EDITOR
             // Code to execute when running in the Unity Editor
@@ -234,16 +238,75 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.x < GameManager.maxLeftSide)
         {
-            transform.Translate(-2.5f, 0, 0);
+            StartCoroutine(MoveLeftCoroutine(.15f));
         }
     }
+    IEnumerator MoveLeftCoroutine(float slideDuration)
+    {
 
+        float initialPosition = transform.position.x;
+        float targetPosition = transform.position.x+2.5f; 
+        float elapsedTime = 0f;
+
+        while (elapsedTime < slideDuration)
+        {
+            float normalizedTime = elapsedTime / slideDuration;
+            float slideHeight = Mathf.Lerp(initialPosition, targetPosition, normalizedTime);
+
+            transform.position = new Vector3(
+                 slideHeight,
+                transform.position.y,
+                transform.position.z
+            );
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Make sure to set the exact target position to avoid any inaccuracies
+        transform.position = new Vector3(
+            targetPosition,
+            transform.position.y,
+            transform.position.z
+        );
+
+    }
     void MoveRight()
     {
         if (transform.position.x > GameManager.maxRightSide)
         {
-            transform.Translate(2.5f, 0, 0);
+            StartCoroutine(MoveRightCoroutine(.15f));
         }
+    }
+    IEnumerator MoveRightCoroutine(float slideDuration)
+    {
+
+        float initialPosition = transform.position.x;
+        float targetPosition = transform.position.x - 2.5f; 
+        float elapsedTime = 0f;
+
+        while (elapsedTime < slideDuration)
+        {
+            float normalizedTime = elapsedTime / slideDuration;
+            float slideHeight = Mathf.Lerp(initialPosition, targetPosition, normalizedTime);
+
+            transform.position = new Vector3(
+                 slideHeight,
+                transform.position.y,
+                transform.position.z
+            );
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Make sure to set the exact target position to avoid any inaccuracies
+        transform.position = new Vector3(
+            targetPosition,
+            transform.position.y,
+            transform.position.z
+        );
+
     }
 
     void Jump()
