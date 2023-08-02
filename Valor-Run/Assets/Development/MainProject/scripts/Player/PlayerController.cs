@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     int maxPlatformCount = 3;
 
+    float heightOnGround = .55f;
+
+    public static PlayerController playerController;
 
     // create all thge variables for the runner here  total coins collected, HighScore, wings collected, highest distance traveled 
     private void OnCollisionEnter(Collision collision)
@@ -50,11 +53,13 @@ public class PlayerController : MonoBehaviour
     public void StartRunning()
     {
         // set running animation here #
+        anim.SetBool("isRunning", true);
         GenrateWorld.RunDummy();
     }
 
     private void Start()
     {
+        playerController = this;
         player = this.gameObject;
         startPosition = player.transform.position;
         anim = GetComponent<Animator>();
@@ -236,6 +241,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveLeft()
     {
+        anim.SetTrigger("leftTurn");
         if (transform.position.x < GameManager.maxLeftSide)
         {
             StartCoroutine(MoveLeftCoroutine(.15f));
@@ -273,6 +279,7 @@ public class PlayerController : MonoBehaviour
     }
     void MoveRight()
     {
+        anim.SetTrigger("rightTurn");
         if (transform.position.x > GameManager.maxRightSide)
         {
             StartCoroutine(MoveRightCoroutine(.15f));
@@ -317,7 +324,7 @@ public class PlayerController : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(JumpCoroutine());
         }
-        //anim.SetBool("isJumping", true);
+        anim.SetBool("isJumping", true);
 
     }
 
@@ -362,7 +369,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator GoDownCoroutine()
     {
         float rollSpeed = 6f; // Speed at which the character rolls down
-        float minHeight = 1.8f; // The lowest height you want the character to reach
+        float minHeight = heightOnGround; // The lowest height you want the character to reach
 
         while (transform.position.y > minHeight)
         {
@@ -389,7 +396,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator SlideDownCoroutine(float slideDuration)
     {
         float initialPosition = transform.position.y;
-        float targetPosition = 1.8f; // The ground level or minimum height
+        float targetPosition = heightOnGround; // The ground level or minimum height
         float elapsedTime = 0f;
 
         while (elapsedTime < slideDuration)

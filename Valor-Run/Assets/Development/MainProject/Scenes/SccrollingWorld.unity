@@ -661,19 +661,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 569540972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1568009410}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &569540972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,12 +745,24 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.513
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -800,9 +800,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arjun
       objectReference: {fileID: 0}
-    - target: {fileID: 3378821683078781901, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 4053811542045812335, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_Height
+      value: 2.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053811542045812335, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_Radius
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053811542045812335, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_Center.y
+      value: 1.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
@@ -1006,7 +1014,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 345566784467415734, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 345566784467578568, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.07233393
+      objectReference: {fileID: 0}
+    - target: {fileID: 345566784467578568, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99224955
       objectReference: {fileID: 0}
     - target: {fileID: 345566784467578582, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
       propertyPath: m_RootOrder
@@ -1051,6 +1067,14 @@ PrefabInstance:
     - target: {fileID: 345566784467578582, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 345566784467578604, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92596155
+      objectReference: {fileID: 0}
+    - target: {fileID: 345566784467578604, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00015033784
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd6c6fc869c7e45cc8c988eb74c6eaaa, type: 3}
@@ -1304,6 +1328,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1108577926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4600673330995346209, guid: 676dd1eb0b9a5df4d830e9d7f3219cd5, type: 3}
+  m_PrefabInstance: {fileID: 3487030999820919046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1165912018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1346,7 @@ GameObject:
   - component: {fileID: 1165912021}
   - component: {fileID: 1165912020}
   m_Layer: 5
-  m_Name: BackToMenu
+  m_Name: Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1387,19 +1416,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1165912021}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1568009410}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ResetScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1165912021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,7 +1547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249608183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.465805, y: -6.7056513, z: -74.42497}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1566,6 +1583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2be6f1494e5083449aa6269ed76da09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingPlatform: {fileID: 1108577926}
   coinCollected: {fileID: 2084487471}
   distanceScore: {fileID: 217249149}
   coins: 0
@@ -1573,6 +1591,9 @@ MonoBehaviour:
   _inGameUi: {fileID: 333269296}
   _menuUI: {fileID: 1895322274}
   _retryUI: {fileID: 544334247}
+  StartGameButton: {fileID: 569540971}
+  QuitButton: {fileID: 2099380250}
+  Retry: {fileID: 1165912020}
 --- !u!4 &1568009411
 Transform:
   m_ObjectHideFlags: 0
@@ -1901,19 +1922,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2099380251}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1568009410}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2099380251
 MonoBehaviour:
   m_ObjectHideFlags: 0

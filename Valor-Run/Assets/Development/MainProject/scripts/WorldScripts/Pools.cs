@@ -17,6 +17,11 @@ public class Pools : MonoBehaviour
     public List<GameObject> pooldItems;
     private void Awake()
     {
+        AddPlatformsToPooledItems();
+    }
+
+    public void AddPlatformsToPooledItems()
+    {
         singleton = this;
 
         pooldItems = new List<GameObject>();
@@ -29,6 +34,14 @@ public class Pools : MonoBehaviour
                 obj.SetActive(false);
                 pooldItems.Add(obj);
             }
+        }
+    }
+
+    public void ResetPool()
+    {
+        foreach(GameObject g in pooldItems)
+        {
+           Destroy(g);
         }
     }
 

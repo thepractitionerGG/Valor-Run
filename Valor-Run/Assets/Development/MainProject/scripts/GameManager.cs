@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManagerSingleton;
+
+    public GameObject StartingPlatform;
     public Text coinCollected = null;
     public Text distanceScore = null;
     public int coins;
@@ -16,6 +18,10 @@ public class GameManager : MonoBehaviour
     public GameObject _inGameUi;
     public GameObject _menuUI;
     public GameObject _retryUI;
+
+    public Button StartGameButton;
+    public Button QuitButton;
+    public Button Retry;
     public enum GameState
     {
         InMenu,
@@ -25,6 +31,13 @@ public class GameManager : MonoBehaviour
 
     private GameState gameState;
 
+    private void Start()
+    {
+        SetGameState(GameManager.GameState.InMenu);
+        StartGameButton.onClick.AddListener(StartGame);
+        QuitButton.onClick.AddListener(QuitGame);
+        Retry.onClick.AddListener(ResetScene);
+    }
 
     public void SetGameState(GameState newState)
     {
@@ -45,17 +58,15 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         coins = 0;
-        DontDestroyOnLoad(gameObject);
+       
         gameManagerSingleton = this;
     }
-    private void Start()
-    {
-        SetGameState(GameManager.GameState.InMenu);
-    }
+
     public void StartGame()
     {
         _menuUI.SetActive(false);
         _inGameUi.SetActive(true);
+        PlayerController.playerController.StartRunning();
         SetGameState(GameManager.GameState.Running);
     }
 
@@ -73,6 +84,17 @@ public class GameManager : MonoBehaviour
 
     public void ResetScene()
     {
+        //_menuUI.SetActive(true);
+        //_retryUI.SetActive(false);
+        //PlayerController.playerController.ResetAnimatorToIdleState();
+        //Pools.singleton.ResetPool();
+        //Pools.singleton.AddPlatformsToPooledItems();
+        //GenrateWorld.RunDummy();
+        //StartingPlatform.SetActive(true);
+        //StartingPlatform.transform.position = startingPlatformInitPos;
+         
+        // remove all the extra functions above;
+
         SceneManager.LoadSceneAsync("SccrollingWorld");
     }
 
