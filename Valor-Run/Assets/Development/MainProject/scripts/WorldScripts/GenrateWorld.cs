@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GenrateWorld : MonoBehaviour
 {
-  
      static public GameObject dummyTraveller;
      static public GameObject lastPlatForm;
     

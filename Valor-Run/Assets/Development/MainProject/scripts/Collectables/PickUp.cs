@@ -6,14 +6,13 @@ public class PickUp : MonoBehaviour
 {
     public int rotateSpeed = 100;
     MeshRenderer mrs;
-    GameManager gameManager;
     private void Start()
     {
         mrs = GetComponent<MeshRenderer>();
     }
     private void Update()
     {
-        if (gameManager.GetGameState() != GameManager.GameState.Running)
+        if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running)
             return;
 
        // if (PlayerController.isDead) return;
@@ -23,7 +22,7 @@ public class PickUp : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameManager.singleton.UpdateScore(1);
+            GameManager.gameManagerSingleton.UpdateScore(1);
             mrs.enabled = false;
         }
     }

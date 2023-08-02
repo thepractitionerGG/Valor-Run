@@ -7,12 +7,11 @@ public class MoveableObstacle : MonoBehaviour
 {
     private float speedArrow = 0;
     private float speedElephant = 0;
-    private MeshRenderer mrs;
     [SerializeField] Vector3 startingPos;
-    GameManager gameManager;
+  
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+       
         SetSpeedRequired();
     }
     public void SetSpeedZero()
@@ -28,7 +27,7 @@ public class MoveableObstacle : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (gameManager.GetGameState() != GameManager.GameState.Running)
+        if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running)
         {
             StopAnimation();
             return;

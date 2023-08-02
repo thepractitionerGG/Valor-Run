@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-    public static GameManager singleton;
-    public Text scoreTextbox = null;
-    public int score;
+    public static GameManager gameManagerSingleton;
+    public Text coinCollected = null;
+    public Text distanceScore = null;
+    public int coins;
+    public int distance;
+    private float distanceInFloat;
 
     public static float maxLeftSide = 2.4f;
     public static float maxRightSide = -2.4f;
@@ -43,9 +44,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        score = 0;
+        coins = 0;
         DontDestroyOnLoad(gameObject);
-        singleton = this;
+        gameManagerSingleton = this;
     }
     private void Start()
     {
@@ -63,17 +64,33 @@ public class GameManager : MonoBehaviour
         if (gameState != GameManager.GameState.Running)
             return;
 
-        score += s;
-        if (scoreTextbox != null)
+        coins += s;
+        if (coinCollected != null)
         {
-            scoreTextbox.text = "Score: " + score;
+            coinCollected.text = "Coins " + coins;
         }
     }
 
     public void ResetScene()
     {
-        
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().ToString());
+        SceneManager.LoadSceneAsync("SccrollingWorld");
+    }
+
+    private void Update()
+    {
+        if (gameState == GameState.Running)
+        {
+            distanceInFloat += 1 * Time.deltaTime;
+        }
+    }
+
+    private void  LateUpdate()
+    {
+        if (gameState == GameState.Running)
+        { 
+            distance = (int)distanceInFloat;
+            distanceScore.text = "Score: "+ Mathf.Abs(distance).ToString();
+        }
     }
 
     public void QuitGame()

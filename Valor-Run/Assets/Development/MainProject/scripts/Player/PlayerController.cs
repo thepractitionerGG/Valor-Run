@@ -15,21 +15,22 @@ public class PlayerController : MonoBehaviour
     private Vector3 touchStartPosition;
     Vector3 startPosition;
    
-    private float minSwipeDistance = 100f;
+    private float minSwipeDistance = 200f;
 
     int maxPlatformCount = 3;
 
-    GameManager _gameManager;
 
+    // create all thge variables for the runner here  total coins collected, HighScore, wings collected, highest distance traveled 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
         {
             // do the shlock tranissiton here #
             anim.SetTrigger("isDead");
-            _gameManager.SetGameState(GameManager.GameState.InMenu);
-            _gameManager._retryUI.SetActive(true);
+            GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
+            GameManager.gameManagerSingleton._retryUI.SetActive(true);
             // Make a Switch case in game manager which handles the case when a enum is changed only if teh game is becoming complex like this ;
+            // make a save score condition here
             return;
         }
 
@@ -44,23 +45,20 @@ public class PlayerController : MonoBehaviour
             curretPlatorm = collision.gameObject;  /// there might be and error here about the current platform not being 
                                                    ///updated when we shift it while jumping #
         }
-            
-
     }
 
     public void StartRunning()
     {
         // set running animation here #
         GenrateWorld.RunDummy();
-        GenrateWorld.RunDummy();
     }
 
     private void Start()
     {
-        _gameManager = GameObject.Find("GameMAnager").GetComponent<GameManager>();
+        player = this.gameObject;
         startPosition = player.transform.position;
         anim = GetComponent<Animator>();
-        player = this.gameObject;
+        GenrateWorld.RunDummy();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,7 +68,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") // will generate world if t section is not the lastplatform, for that move to update 
+        if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") 
+            // will generate world if t section is not the lastplatform, for that move to update 
         {
             if (CounEnabledPlatforms() > maxPlatformCount)
                 return;
@@ -106,7 +105,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-      if (isDead) return;
+      if (GameManager.gameManagerSingleton.GetGameState()!=GameManager.GameState.Running) return;
 
     #if UNITY_EDITOR
             // Code to execute when running in the Unity Editor
