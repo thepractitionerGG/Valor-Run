@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
         {
             // do the shlock tranissiton here #
             anim.SetTrigger("isDead");
+            GetComponent<PlayerDataManager>().SavePlayerData(GameManager.gameManagerSingleton.distance
+                                                            , GameManager.gameManagerSingleton.coins,
+                                                            GameManager.gameManagerSingleton.coins);
+
             GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
             GameManager.gameManagerSingleton._retryUI.SetActive(true);
             // Make a Switch case in game manager which handles the case when a enum is changed only if teh game is becoming complex like this ;
@@ -133,7 +137,7 @@ public class PlayerController : MonoBehaviour
                 // Store touch start position
                 touchStartPosition = touch.position;
             }
-            else if ( Mathf.Abs(touch.position.x-touchStartPosition.x)> 100 || Mathf.Abs( touch.position.y- touchStartPosition.y) > 100)
+            else if ( Mathf.Abs(touch.position.x-touchStartPosition.x)> 400 || Mathf.Abs( touch.position.y- touchStartPosition.y) > 400)
             {
                 // Calculate swipe distance
                 float swipeDistanceSide = touch.position.x - touchStartPosition.x;
@@ -168,7 +172,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else if (swipeDownDistance > minSwipeDistance)
                     {
-                        GoDown(); 
+                        SlideDown(); 
                     }
 
                 }
@@ -186,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            GoDown();
+            SlideDown();
         }
 
         else if (Input.GetKeyDown(KeyCode.M))
@@ -355,7 +359,7 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    void GoDown()
+    void SlideDown()
     {
         if (!inAir)
         {
@@ -364,6 +368,7 @@ public class PlayerController : MonoBehaviour
         inAir = false;
         StopAllCoroutines();
         StartCoroutine(SlideDownCoroutine(.2f));
+        anim.SetBool("isJumping", false);
     }
 
     IEnumerator GoDownCoroutine()
@@ -391,6 +396,7 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
+        anim.SetBool("isJumping", false);
     }
 
     IEnumerator SlideDownCoroutine(float slideDuration)

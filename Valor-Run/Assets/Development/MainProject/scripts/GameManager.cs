@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManagerSingleton;
 
     public GameObject StartingPlatform;
-    public Text coinCollected = null;
-    public Text distanceScore = null;
+    public Text coinCollected;
+    public Text distanceScore;
     public int coins;
     public int distance;
     private float distanceInFloat;
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         coins += s;
         if (coinCollected != null)
         {
+            Debug.Log(coins);
             coinCollected.text = "Coins " + coins;
         }
     }
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
         //StartingPlatform.SetActive(true);
         //StartingPlatform.transform.position = startingPlatformInitPos;
          
-        // remove all the extra functions above;
+        // remove all the extra functions above; they were created for reset'
 
         SceneManager.LoadSceneAsync("SccrollingWorld");
     }
@@ -102,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameState == GameState.Running)
         {
-            distanceInFloat += 1 * Time.deltaTime;
+            distanceInFloat += 2 * Time.deltaTime;
         }
     }
 
