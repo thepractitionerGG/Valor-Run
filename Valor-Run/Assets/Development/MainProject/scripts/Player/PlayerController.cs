@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     int maxPlatformCount = 3;
 
-    float heightOnGround = .55f;
+    float heightOnGround = .52f;
 
     public static PlayerController playerController;
 
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("isDead");
             GetComponent<PlayerDataManager>().SavePlayerData(GameManager.gameManagerSingleton.distance
                                                             , GameManager.gameManagerSingleton.coins,
-                                                            GameManager.gameManagerSingleton.coins);
+                                                            GameManager.gameManagerSingleton.wings);
 
             GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
             GameManager.gameManagerSingleton._retryUI.SetActive(true);
@@ -128,6 +128,9 @@ public class PlayerController : MonoBehaviour
 
     private void MovementAndroid()
     {
+        if (GameManager.gameManagerSingleton.touchDisabled)
+              return;
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -137,7 +140,7 @@ public class PlayerController : MonoBehaviour
                 // Store touch start position
                 touchStartPosition = touch.position;
             }
-            else if ( Mathf.Abs(touch.position.x-touchStartPosition.x)> 400 || Mathf.Abs( touch.position.y- touchStartPosition.y) > 400)
+            else if ( Mathf.Abs(touch.position.x-touchStartPosition.x)> 100 || Mathf.Abs( touch.position.y- touchStartPosition.y) > 100)
             {
                 // Calculate swipe distance
                 float swipeDistanceSide = touch.position.x - touchStartPosition.x;
@@ -165,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
                 else
                 {
-                    Debug.Log(swipeDownDistance+" "+swipeUpDistance);
+                   
                     if (swipeUpDistance > minSwipeDistance)
                     {
                         Jump();

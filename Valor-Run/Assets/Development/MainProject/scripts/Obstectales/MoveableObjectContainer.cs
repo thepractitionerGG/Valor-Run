@@ -10,7 +10,6 @@ public class MoveableObjectContainer : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Hit");
             foreach (GameObject g in moveableObjectContainerArray)
             {
                 g.SetActive(true);

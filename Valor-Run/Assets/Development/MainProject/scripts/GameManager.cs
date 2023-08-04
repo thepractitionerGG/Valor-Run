@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,8 +10,10 @@ public class GameManager : MonoBehaviour
     public GameObject StartingPlatform;
     public Text coinCollected;
     public Text distanceScore;
+    public Text WingsCollected;
     public int coins;
     public int distance;
+    public int wings;
     private float distanceInFloat;
 
     public static float maxLeftSide = 2.4f;
@@ -20,8 +24,9 @@ public class GameManager : MonoBehaviour
     public GameObject _retryUI;
 
     public Button StartGameButton;
-    public Button QuitButton;
     public Button Retry;
+
+    public bool touchDisabled;
     public enum GameState
     {
         InMenu,
@@ -35,7 +40,6 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameManager.GameState.InMenu);
         StartGameButton.onClick.AddListener(StartGame);
-        QuitButton.onClick.AddListener(QuitGame);
         Retry.onClick.AddListener(ResetScene);
     }
 
@@ -64,13 +68,14 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        DisableTouch();
         _menuUI.SetActive(false);
         _inGameUi.SetActive(true);
         PlayerController.playerController.StartRunning();
         SetGameState(GameManager.GameState.Running);
     }
 
-    public void UpdateScore(int s)
+    public void UpdateCoins(int s)
     {
         if (gameState != GameManager.GameState.Running)
             return;
@@ -78,8 +83,19 @@ public class GameManager : MonoBehaviour
         coins += s;
         if (coinCollected != null)
         {
-            Debug.Log(coins);
             coinCollected.text = "Coins " + coins;
+        }
+    }
+
+    public void UpdateWings(int s)
+    {
+        if (gameState != GameManager.GameState.Running)
+            return;
+
+        wings += s;
+        if (WingsCollected != null)
+        {
+            WingsCollected.text = "Wings " + wings;
         }
     }
 
@@ -98,7 +114,18 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadSceneAsync("SccrollingWorld");
     }
+    
+    void DisableTouch()
+    {
+        touchDisabled = true;
+        StartCoroutine(TouchEnable());
+    }
 
+    IEnumerator TouchEnable()
+    {
+        yield return new WaitForSeconds(.7f);
+        touchDisabled = false;
+    }
     private void Update()
     {
         if (gameState == GameState.Running)
