@@ -22,7 +22,17 @@ public class PickUp : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameManager.gameManagerSingleton.UpdateScore(1);
+            if (gameObject.name == "Wings")
+            {
+                GameManager.gameManagerSingleton.UpdateWings(1);
+            }
+
+            else
+            {
+                GameManager.gameManagerSingleton.UpdateCoins(1);
+               
+            }
+
             mrs.enabled = false;
         }
     }

@@ -63347,7 +63347,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4891371497202905703, guid: 9f97f84f6c5372048996689f96bbf82f, type: 3}
       propertyPath: m_Name
-      value: Magical Wings Variant
+      value: Wings
       objectReference: {fileID: 0}
     - target: {fileID: 5236125998865426653, guid: 9f97f84f6c5372048996689f96bbf82f, type: 3}
       propertyPath: m_RootOrder
