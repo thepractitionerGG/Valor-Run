@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public Button Retry;
 
     public bool touchDisabled;
+
+    public AudioData audioData;
     public enum GameState
     {
         InMenu,

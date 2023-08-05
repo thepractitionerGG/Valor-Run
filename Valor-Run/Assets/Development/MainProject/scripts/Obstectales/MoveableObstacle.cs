@@ -8,10 +8,14 @@ public class MoveableObstacle : MonoBehaviour
     private float speedArrow = 0;
     private float speedElephant = 0;
     [SerializeField] Vector3 startingPos;
-  
+
+    private void Awake()
+    {
+        startingPos = gameObject.transform.position;
+    }
     private void Start()
     {
-       
+ 
         SetSpeedRequired();
     }
     public void SetSpeedZero()
@@ -63,6 +67,7 @@ public class MoveableObstacle : MonoBehaviour
 
     private void OnEnable()
     {
+       
         transform.position = startingPos;
         SetSpeedRequired();
     }

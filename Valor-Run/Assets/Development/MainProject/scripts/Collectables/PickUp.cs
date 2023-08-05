@@ -25,12 +25,13 @@ public class PickUp : MonoBehaviour
             if (gameObject.name == "Wings")
             {
                 GameManager.gameManagerSingleton.UpdateWings(1);
+                AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.WingsCollected,transform);
             }
 
             else
             {
                 GameManager.gameManagerSingleton.UpdateCoins(1);
-               
+                AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.CoinCollected, transform);
             }
 
             mrs.enabled = false;
