@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             // do the shlock tranissiton here #
+            AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ObstacleHit, transform);
+           
+      
             anim.SetTrigger("isDead");
             GetComponent<PlayerDataManager>().SavePlayerData(GameManager.gameManagerSingleton.distance
                                                             , GameManager.gameManagerSingleton.coins,
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
             GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
             GameManager.gameManagerSingleton._retryUI.SetActive(true);
+            GameManager.gameManagerSingleton._inGameUi.SetActive(false);
             // Make a Switch case in game manager which handles the case when a enum is changed only if teh game is becoming complex like this ;
             // make a save score condition here
             return;
@@ -331,6 +335,9 @@ public class PlayerController : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(JumpCoroutine());
         }
+
+        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.Jump, transform);
+
         anim.SetBool("isJumping", true);
 
     }
