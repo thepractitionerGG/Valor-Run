@@ -106758,7 +106758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186289823536598965, guid: 3d20fef74afff8548a288e78a27c8d50, type: 3}
       propertyPath: startingPos.x
-      value: -2.08
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6186289823536598965, guid: 3d20fef74afff8548a288e78a27c8d50, type: 3}
       propertyPath: startingPos.y
@@ -106805,7 +106805,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1673246711, guid: 52e9ad5aeb776d047a6aabbceade4737, type: 3}
       propertyPath: startingPos.x
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1673246711, guid: 52e9ad5aeb776d047a6aabbceade4737, type: 3}
       propertyPath: startingPos.y
