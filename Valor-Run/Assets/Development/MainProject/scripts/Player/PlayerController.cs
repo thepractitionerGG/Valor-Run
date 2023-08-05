@@ -346,7 +346,7 @@ public class PlayerController : MonoBehaviour
     {
        
         float initialJumpSpeed = 6f; // Initial jump speed
-        float jumpDuration = 1f;   // Total jump duration in seconds
+        float jumpDuration = .5f;   // Total jump duration in seconds
         float elapsedTime = 0f;
 
         while (elapsedTime < jumpDuration)
