@@ -12,7 +12,10 @@ public class MoveableObjectContainer : MonoBehaviour
         {
             foreach (GameObject g in moveableObjectContainerArray)
             {
-                g.SetActive(true);
+                if (g != null)
+                {
+                    g.SetActive(true);
+                }
             }
         }
         
@@ -24,7 +27,11 @@ public class MoveableObjectContainer : MonoBehaviour
         {
             foreach (GameObject g in moveableObjectContainerArray)
             {
-                g.SetActive(false);
+                if (g != null)
+                {
+                    g.SetActive(false);
+                }
+               
             }
         }
     }

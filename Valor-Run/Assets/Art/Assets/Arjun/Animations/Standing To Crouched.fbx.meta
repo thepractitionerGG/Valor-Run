@@ -36,7 +36,7 @@ ModelImporter:
       name: Standing To Crouched
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 0
+      firstFrame: 8.9
       lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
