@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public int rotateSpeed = 100;
+    public int rotateSpeed;
     MeshRenderer mrs;
     private void Start()
     {
         mrs = GetComponent<MeshRenderer>();
+        rotateSpeed = Random.Range(49, 100);
     }
     private void Update()
     {
@@ -22,7 +23,7 @@ public class PickUp : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (gameObject.name == "Wings")
+            if (gameObject.name == "ValorWings")
             {
                 GameManager.gameManagerSingleton.UpdateWings(1);
                 AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.WingsCollected,transform);

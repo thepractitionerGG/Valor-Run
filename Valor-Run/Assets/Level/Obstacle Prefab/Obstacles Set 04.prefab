@@ -8569,8 +8569,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.24, y: 4, z: 57.95114}
-  m_Center: {x: 0, y: 2.4499998, z: 0.49756622}
+  m_Size: {x: 7.24, y: 4, z: 56.303055}
+  m_Center: {x: 0, y: 2.4499998, z: 0.33891678}
 --- !u!114 &2665716821684291579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127926,7 +127926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1119364775367695930, guid: 3d20fef74afff8548a288e78a27c8d50, type: 3}
       propertyPath: m_Name
-      value: Elephant (1)
+      value: Elephant
       objectReference: {fileID: 0}
     - target: {fileID: 1119364775367695930, guid: 3d20fef74afff8548a288e78a27c8d50, type: 3}
       propertyPath: m_IsActive

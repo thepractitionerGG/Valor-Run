@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 touchStartPosition;
     Vector3 startPosition;
    
-    private float minSwipeDistance = 200f;
+    private float minSwipeDistance = 100f;
 
     int maxPlatformCount = 3;
 
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
 
    // create a variable to store the collider height at start and use it in game # ;
+   // corutine pronblem stp one before going to next ok?
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
@@ -409,6 +410,13 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
+
+        transform.position = new Vector3(
+         transform.position.x,
+         minHeight,
+         transform.position.z
+     );
+
         anim.SetBool("isJumping", false);
     }
 

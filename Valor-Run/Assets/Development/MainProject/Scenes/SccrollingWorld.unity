@@ -1036,17 +1036,13 @@ PrefabInstance:
       propertyPath: wingsCountText
       value: 
       objectReference: {fileID: 1094768774}
-    - target: {fileID: 945256523161835912, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.08
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1087,6 +1083,10 @@ PrefabInstance:
     - target: {fileID: 3378821683078781901, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_Name
       value: Arjun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053811542045812335, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_Height
+      value: 2.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
@@ -1856,19 +1856,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
+  - prfab: {fileID: 2321419823432828931, guid: 3e34aeaddf62c8646a0af009b7ba2bfd, type: 3}
+    amount: 3
+    expandble: 0
   - prfab: {fileID: 4629135599750311674, guid: 1781addf89af1fd4390e9f3d07578d15, type: 3}
     amount: 3
     expandble: 0
   - prfab: {fileID: 3709399927239164385, guid: fef722ce55eaeb74185a4b938086ae4b, type: 3}
     amount: 3
     expandble: 0
-  - prfab: {fileID: 2321419823432828931, guid: 3e34aeaddf62c8646a0af009b7ba2bfd, type: 3}
+  - prfab: {fileID: 9047101826402345926, guid: 09b23ae16efc2ba47beb1facbb7101a5, type: 3}
     amount: 3
     expandble: 0
   - prfab: {fileID: 2730123587523416857, guid: ec52788c444b74947b6f71f5b8602a90, type: 3}
-    amount: 3
-    expandble: 0
-  - prfab: {fileID: 9047101826402345926, guid: 09b23ae16efc2ba47beb1facbb7101a5, type: 3}
     amount: 3
     expandble: 0
   pooldItems: []

@@ -26,7 +26,7 @@ public class MoveableObstacle : MonoBehaviour
 
     public void SetSpeedRequired()
     {
-        speedArrow = .30f;
+        speedArrow = .25f;
         speedElephant = .1f;
     }
     private void FixedUpdate()
