@@ -1036,6 +1036,10 @@ PrefabInstance:
       propertyPath: wingsCountText
       value: 
       objectReference: {fileID: 1094768774}
+    - target: {fileID: 945256523161835912, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2713468012358009207, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1859,6 +1863,12 @@ MonoBehaviour:
     amount: 3
     expandble: 0
   - prfab: {fileID: 2321419823432828931, guid: 3e34aeaddf62c8646a0af009b7ba2bfd, type: 3}
+    amount: 3
+    expandble: 0
+  - prfab: {fileID: 2730123587523416857, guid: ec52788c444b74947b6f71f5b8602a90, type: 3}
+    amount: 3
+    expandble: 0
+  - prfab: {fileID: 9047101826402345926, guid: 09b23ae16efc2ba47beb1facbb7101a5, type: 3}
     amount: 3
     expandble: 0
   pooldItems: []
