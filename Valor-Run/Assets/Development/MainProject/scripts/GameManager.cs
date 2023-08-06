@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public int wings;
     private float distanceInFloat;
 
-    public static float maxLeftSide = 2.4f;
-    public static float maxRightSide = -2.4f;
+    public static float maxLeftSide = 2f;
+    public static float maxRightSide = -2f;
 
     public GameObject _inGameUi;
     public GameObject _menuUI;

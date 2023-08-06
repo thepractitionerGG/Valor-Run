@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
         if (inAir) // add a tag array for this and check if any platfomr tag comes it should 
         {
+            GetComponent<Rigidbody>().useGravity = true;
             inAir = false;
             StopJummp(); 
         }
@@ -380,21 +381,21 @@ public class PlayerController : MonoBehaviour
             return;
         }
         inAir = false;
-        StopAllCoroutines();
+       // StopAllCoroutines();
         StartCoroutine(SlideDownCoroutine(.2f));
         anim.SetBool("isJumping", false);
     }
 
     IEnumerator GoDownCoroutine()
     {
-        float rollSpeed = 6f; // Speed at which the character rolls down
+        float GoDownSpeed = 6f; // Speed at which the character rolls down
         float minHeight = heightOnGround; // The lowest height you want the character to reach
 
         while (transform.position.y > minHeight)
         {
             transform.position = new Vector3(
                 transform.position.x,
-                transform.position.y - rollSpeed * Time.deltaTime,
+                transform.position.y - GoDownSpeed * Time.deltaTime,
                 transform.position.z
             );
 
@@ -410,6 +411,8 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
+
+        GetComponent<Rigidbody>().useGravity = true;
 
         transform.position = new Vector3(
          transform.position.x,
