@@ -18,5 +18,5 @@ MonoBehaviour:
   _arjunFallsDown: {fileID: 8300000, guid: ba114bea00a0c2b42b4852ae87399726, type: 3}
   _obstacleHit: {fileID: 8300000, guid: f7b4dbd0fff867846a357af19b61f188, type: 3}
   _wingsCollected: {fileID: 8300000, guid: 9d3d567010e6c72469b97dcd5c51d81f, type: 3}
-  _coinCollected: {fileID: 8300000, guid: 466218dd429256440b9b25c1124768c0, type: 3}
+  _coinCollected: {fileID: 8300000, guid: f8a3136d2ce70fd4aa9599f9d07e7098, type: 3}
   _geetaSholck: {fileID: 8300000, guid: b42a04b818e4c204f9d1a3ec3de23f0c, type: 3}
