@@ -5,28 +5,51 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    Animator anim;
+    Animator _anim;
 
-    public static GameObject player;
-    public static GameObject curretPlatorm;
-    bool canTurn = false;
-    public static bool inAir = false;
-    public static bool isDead = false;
-    private Vector3 touchStartPosition;
-    Vector3 startPosition;
-   
-    private float minSwipeDistance = 100f;
+    public static GameObject _player;
+    public static GameObject _curretPlatorm;
+    public static PlayerController _playerController;
 
-    int maxPlatformCount = 3;
+    bool _canTurn = false;
 
-    float heightOnGround = .52f;
+    public static bool _inAir = false;
+    public static bool _isDead = false;
 
-    public static PlayerController playerController;
+    private Vector3 _touchStartPosition;
+    Vector3 _playerStartPosition;
 
+    int _maxPlatformCount = 3;
 
+    [SerializeField] private float _minSwipeDistance = 100f;
+    float _heightOnGround;
+    float _capsulColliderHeightAtStart;
+    [SerializeField] float _jumpDuration;
+    [SerializeField] float _jumpSpeed;
 
-   // create a variable to store the collider height at start and use it in game # ;
-   // corutine pronblem stp one before going to next ok?
+    Rigidbody _rb;
+
+    // create a variable to store the collider height at start and use it in game # ;
+    // corutine pronblem stp one before going to next ok?
+
+    private void Start()
+    {
+        _playerController = this;
+        _player = this.gameObject;
+        _playerStartPosition = _player.transform.position;
+        _heightOnGround = _playerStartPosition.y;
+        _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
+        _capsulColliderHeightAtStart = GetComponent<CapsuleCollider>().height;
+        GenrateWorld.RunDummy();
+    }
+
+    public void StartRunning()
+    {
+        _anim.SetBool("isRunning", true);
+        GenrateWorld.RunDummy();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
@@ -35,7 +58,7 @@ public class PlayerController : MonoBehaviour
             AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ObstacleHit, transform);
            
       
-            anim.SetTrigger("isDead");
+            _anim.SetTrigger("isDead");
             GetComponent<PlayerDataManager>().SavePlayerData(GameManager.gameManagerSingleton.distance
                                                             , GameManager.gameManagerSingleton.coins,
                                                             GameManager.gameManagerSingleton.wings);
@@ -43,41 +66,29 @@ public class PlayerController : MonoBehaviour
             GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
             GameManager.gameManagerSingleton._retryUI.SetActive(true);
             GameManager.gameManagerSingleton._inGameUi.SetActive(false);
-            GetComponent<Rigidbody>().useGravity = true;
+            _rb.useGravity = true;
             // Make a Switch case in game manager which handles the case when a enum is changed only if teh game is becoming complex like this ;
             // make a save score condition here
             return;
         }
 
-        if (inAir) // add a tag array for this and check if any platfomr tag comes it should 
+        if (_inAir) // add a tag array for this and check if any platfomr tag comes it should 
         {
-            GetComponent<Rigidbody>().useGravity = true;
-            inAir = false;
+            _rb.useGravity = false;
+            _inAir = false;
             StopJummp(); 
         }
 
         else
         {
-            curretPlatorm = collision.gameObject;  /// there might be and error here about the current platform not being 
-                                                   ///updated when we shift it while jumping #
+            _curretPlatorm = collision.gameObject;  /// there might be and error here about the current platform not being 
+                                         ///updated when we shift it while jumping #
         }
     }
 
-    public void StartRunning()
-    {
-        // set running animation here #
-        anim.SetBool("isRunning", true);
-        GenrateWorld.RunDummy();
-    }
+   
 
-    private void Start()
-    {
-        playerController = this;
-        player = this.gameObject;
-        startPosition = player.transform.position;
-        anim = GetComponent<Animator>();
-        GenrateWorld.RunDummy();
-    }
+  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -89,7 +100,7 @@ public class PlayerController : MonoBehaviour
         if (other is BoxCollider && GenrateWorld.lastPlatForm.tag != "platformTSection") 
             // will generate world if t section is not the lastplatform, for that move to update 
         {
-            if (CounEnabledPlatforms() > maxPlatformCount)
+            if (CounEnabledPlatforms() > _maxPlatformCount)
                 return;
            
             GenrateWorld.RunDummy(); // To Genrate world for more then one tile writ this line of code multiple times, it will only break if there is a t sectin formed after a tsection
@@ -98,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         if (other is SphereCollider)
         {
-            canTurn = true;
+            _canTurn = true;
         }
     }
 
@@ -106,18 +117,18 @@ public class PlayerController : MonoBehaviour
     {
         if(other is SphereCollider)
         {
-            canTurn = false;
+            _canTurn = false;
         }
     }
 
     public void StopJummp()
     {
-        anim.SetBool("isJumping", false);
+        _anim.SetBool("isJumping", false);
     }
 
     public void StopMagic()
     {
-        anim.SetBool("isMagic", false);
+        _anim.SetBool("isMagic", false);
     }
 
     // Update is called once per frame
@@ -147,18 +158,18 @@ public class PlayerController : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 // Store touch start position
-                touchStartPosition = touch.position;
+                _touchStartPosition = touch.position;
             }
-            else if ( Mathf.Abs(touch.position.x-touchStartPosition.x)> 100 || Mathf.Abs( touch.position.y- touchStartPosition.y) > 100)
+            else if ( Mathf.Abs(touch.position.x-_touchStartPosition.x)> 100 || Mathf.Abs( touch.position.y- _touchStartPosition.y) > 100)
             {
                 // Calculate swipe distance
-                float swipeDistanceSide = touch.position.x - touchStartPosition.x;
-                float swipeUpDistance = touch.position.y - touchStartPosition.y;
-                float swipeDownDistance = touchStartPosition.y - touch.position.y;
+                float swipeDistanceSide = touch.position.x - _touchStartPosition.x;
+                float swipeUpDistance = touch.position.y - _touchStartPosition.y;
+                float swipeDownDistance = _touchStartPosition.y - touch.position.y;
 
                 if (Mathf.Abs(swipeDistanceSide) > Mathf.Abs(swipeUpDistance))
                 {
-                    if (Mathf.Abs(swipeDistanceSide) > minSwipeDistance && touch.phase==TouchPhase.Ended)
+                    if (Mathf.Abs(swipeDistanceSide) > _minSwipeDistance && touch.phase==TouchPhase.Ended)
                     {
 
                         // Check swipe direction
@@ -178,13 +189,14 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                    
-                    if (swipeUpDistance > minSwipeDistance)
+                    if (swipeUpDistance > _minSwipeDistance)
                     {
                         Jump();
                     }
-                    else if (swipeDownDistance > minSwipeDistance)
+                    else if (swipeDownDistance > _minSwipeDistance)
                     {
-                        SlideDown(); 
+                        SlideDown();
+                        SlideUnder();
                     }
 
                 }
@@ -203,19 +215,20 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S))
         {
             SlideDown();
+            SlideUnder();
         }
 
         else if (Input.GetKeyDown(KeyCode.M))
         {
-            anim.SetBool("isMagic", true);
+            _anim.SetBool("isMagic", true);
         }
 
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && canTurn)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && _canTurn)
         {
             RightTurn();
         }
 
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && canTurn)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && _canTurn)
         {
             LeftTurn();
         }
@@ -240,7 +253,7 @@ public class PlayerController : MonoBehaviour
         if (GenrateWorld.lastPlatForm.tag != "platformTSection") // to genrate further as we can call genreate.runDmmy multiple times to make unlimited world
             GenrateWorld.RunDummy();
 
-        transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z); // for aliging the position of our player after a turn;
+        transform.position = new Vector3(_playerStartPosition.x, transform.position.y, _playerStartPosition.z); // for aliging the position of our player after a turn;
     }
 
     private void LeftTurn()
@@ -252,12 +265,12 @@ public class PlayerController : MonoBehaviour
         if (GenrateWorld.lastPlatForm.tag != "platformTSection")
             GenrateWorld.RunDummy();
 
-        transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
+        transform.position = new Vector3(_playerStartPosition.x, transform.position.y, _playerStartPosition.z);
     }
 
     void MoveLeft()
     {
-        anim.SetTrigger("leftTurn");
+        _anim.SetTrigger("leftTurn");
         if (transform.position.x < GameManager.maxLeftSide)
         {
             StartCoroutine(MoveLeftCoroutine(.15f));
@@ -295,7 +308,7 @@ public class PlayerController : MonoBehaviour
     }
     void MoveRight()
     {
-        anim.SetTrigger("rightTurn");
+        _anim.SetTrigger("rightTurn");
         if (transform.position.x > GameManager.maxRightSide)
         {
             StartCoroutine(MoveRightCoroutine(.15f));
@@ -334,30 +347,26 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {  
-        if (!inAir)
+        if (!_inAir)
         {
-            inAir = true;
+            _inAir = true;
             StopAllCoroutines();
             StartCoroutine(JumpCoroutine());
+            _anim.SetBool("isJumping", true);
+            _anim.SetBool("isSliding", false); //  this is done because the animation after jumping doesnt go back to sliding
+            GetComponent<CapsuleCollider>().height = _capsulColliderHeightAtStart;
+            AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.Jump, transform);
         }
-
-        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.Jump, transform);
-
-        anim.SetBool("isJumping", true);
-
     }
 
     IEnumerator JumpCoroutine()
     {
-       
-        float initialJumpSpeed = 6f; // Initial jump speed
-        float jumpDuration = .5f;   // Total jump duration in seconds
         float elapsedTime = 0f;
 
-        while (elapsedTime < jumpDuration)
+        while (elapsedTime < _jumpDuration)
         {
-            float normalizedTime = elapsedTime / jumpDuration;
-            float jumpHeight = Mathf.Lerp(initialJumpSpeed, 0f, normalizedTime);
+            float normalizedTime = elapsedTime / _jumpDuration;
+            float jumpHeight = Mathf.Lerp(_jumpSpeed, 0f, normalizedTime);
 
             transform.position = new Vector3(
                 transform.position.x,
@@ -368,65 +377,38 @@ public class PlayerController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        StartCoroutine(GoDownCoroutine());
+        _rb.useGravity = true;
 
     }
 
     
     void SlideDown()
     {
-        if (!inAir)
+        if (!_inAir)
         {
             return;
         }
-        inAir = false;
-       // StopAllCoroutines();
+        
+        StopAllCoroutines();
         StartCoroutine(SlideDownCoroutine(.2f));
-        anim.SetBool("isJumping", false);
+        _anim.SetBool("isJumping", false);
     }
 
-    IEnumerator GoDownCoroutine()
+    void SlideUnder()
     {
-        float GoDownSpeed = 6f; // Speed at which the character rolls down
-        float minHeight = heightOnGround; // The lowest height you want the character to reach
-
-        while (transform.position.y > minHeight)
+        if (_inAir)
         {
-            transform.position = new Vector3(
-                transform.position.x,
-                transform.position.y - GoDownSpeed * Time.deltaTime,
-                transform.position.z
-            );
-
-            // Ensure the character doesn't go below the minimum height
-            if (transform.position.y < minHeight)
-            {
-                transform.position = new Vector3(
-                    transform.position.x,
-                    minHeight,
-                    transform.position.z
-                );
-            }
-
-            yield return null;
+            return;
         }
 
-        GetComponent<Rigidbody>().useGravity = true;
-
-        transform.position = new Vector3(
-         transform.position.x,
-         minHeight,
-         transform.position.z
-     );
-
-        anim.SetBool("isJumping", false);
+        StopAllCoroutines();
+        StartCoroutine(DecreaseColliderSizeCoroutine(.5f));
     }
 
     IEnumerator SlideDownCoroutine(float slideDuration)
     {
         float initialPosition = transform.position.y;
-        float targetPosition = heightOnGround; // The ground level or minimum height
+        float targetPosition = _heightOnGround; // The ground level or minimum height
         float elapsedTime = 0f;
 
         while (elapsedTime < slideDuration)
@@ -444,6 +426,8 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        _rb.useGravity = false;
+        _inAir = false;
         // Make sure to set the exact target position to avoid any inaccuracies
         transform.position = new Vector3(
             transform.position.x,
@@ -454,8 +438,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DecreaseColliderSizeCoroutine(float slideDuration)
     {
+        _anim.SetBool("isSliding", true);
         // Store the initial collider size
-        float initialColliderSize = GetComponent<CapsuleCollider>().height;
+        float initialColliderSize = _capsulColliderHeightAtStart;
 
         float targetHeight = initialColliderSize/ 2f;
         float elapsedTime = 0f;
@@ -480,16 +465,17 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator IncreaseColliderSizeCoroutine(float slideDuration)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.6f);
+
+        _anim.SetBool("isSliding", false);
+
         // Store the current and target collider sizes
-        float initialColliderSize = GetComponent<CapsuleCollider>().height;
         float targetColliderSize = GetComponent<CapsuleCollider>().height*2; // You need to set this variable to the original collider size in the Start or Awake method.
 
         float elapsedTime = 0f;
 
         while (elapsedTime < slideDuration)
         {
-            float normalizedTime = elapsedTime / slideDuration;
             float newHeight = targetColliderSize;
 
             // Update the collider size
@@ -502,6 +488,43 @@ public class PlayerController : MonoBehaviour
         // Make sure to set the exact target size to avoid any inaccuracies
         GetComponent<CapsuleCollider>().height = targetColliderSize;
     }
+
+    //IEnumerator GoDownCoroutine() // as now we are using gravity we might not need a simple go down corutine but we only need one for swipe down;
+    //{
+    //    float GoDownSpeed = 6f; // Speed at which the character rolls down
+    //    float minHeight = _heightOnGround; // The lowest height you want the character to reach
+
+    //    while (transform.position.y > minHeight)
+    //    {
+    //        transform.position = new Vector3(
+    //            transform.position.x,
+    //            transform.position.y - GoDownSpeed * Time.deltaTime,
+    //            transform.position.z
+    //        );
+
+    //        // Ensure the character doesn't go below the minimum height
+    //        if (transform.position.y < minHeight)
+    //        {
+    //            transform.position = new Vector3(
+    //                transform.position.x,
+    //                minHeight,
+    //                transform.position.z
+    //            );
+    //        }
+
+    //        yield return null;
+    //    }
+
+    //     _rb.useGravity = true;
+
+    //     transform.position = new Vector3(
+    //     transform.position.x,
+    //     minHeight,
+    //     transform.position.z
+    // );
+
+    //    _anim.SetBool("isJumping", false);
+    //}
 
     private int CounEnabledPlatforms() // this function is for counting howmany platfomrs are active in gameview ain game time and the tag is helping us to get idea
     {

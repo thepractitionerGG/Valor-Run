@@ -1329,10 +1329,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2713468012358009207}
   - component: {fileID: 2459692975400248990}
-  - component: {fileID: 8241525628145484152}
   - component: {fileID: 945256523161835912}
   - component: {fileID: 4053811542045812335}
   - component: {fileID: 582940608}
+  - component: {fileID: 8241525628145484152}
   m_Layer: 0
   m_Name: Arjun
   m_TagString: Player
@@ -1378,18 +1378,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &8241525628145484152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3378821683078781901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac873d1042bd46e44a7151f75805a4af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &945256523161835912
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1417,7 +1405,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.42
-  m_Height: 2.54
+  m_Height: 2.04
   m_Direction: 1
   m_Center: {x: 0, y: 1.03, z: 0.060000002}
 --- !u!114 &582940608
@@ -1435,6 +1423,21 @@ MonoBehaviour:
   coinCountText: {fileID: 0}
   wingsCountText: {fileID: 0}
   highScoreText: {fileID: 0}
+--- !u!114 &8241525628145484152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378821683078781901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac873d1042bd46e44a7151f75805a4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSwipeDistance: 100
+  _jumpDuration: 0.7
+  _jumpSpeed: 6
 --- !u!1 &3510526211370652017
 GameObject:
   m_ObjectHideFlags: 0

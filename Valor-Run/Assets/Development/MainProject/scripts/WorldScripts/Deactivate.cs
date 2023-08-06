@@ -15,7 +15,7 @@ public class Deactivate : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (PlayerController.isDead) return;
+        if (PlayerController._isDead) return;
         foreach (GameObject g in moveableObjects)// add this condition 
         {
             g.SetActive(false);

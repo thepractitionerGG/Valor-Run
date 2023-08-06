@@ -40,8 +40,8 @@ public class PlayerDataManager : MonoBehaviour
         int wingsCount = PlayerPrefs.GetInt("WingsCount", 0);
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
 
-        coinCountText.text = "Coins: " + coinCount;
-        wingsCountText.text = "Wings: " + wingsCount;
-        highScoreText.text = "High Score: " + highScore;
+        coinCountText.text =  coinCount.ToString();
+        wingsCountText.text = wingsCount.ToString();
+        highScoreText.text =  highScore.ToString();
     }
 }
