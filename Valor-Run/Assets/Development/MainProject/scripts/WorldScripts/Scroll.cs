@@ -9,15 +9,15 @@ public class Scroll : MonoBehaviour
         if (GameManager.gameManagerSingleton.GetGameState()!=GameManager.GameState.Running)
                 return;
 
-        this.transform.position += PlayerController.player.transform.forward * -9f*Time.deltaTime;
+        this.transform.position += PlayerController._player.transform.forward * -9f*Time.deltaTime;
 
-        if (PlayerController.curretPlatorm == null)
+        if (PlayerController._curretPlatorm == null)
             return;
 
-        if (PlayerController.curretPlatorm.tag == "stairsUp")
+        if (PlayerController._curretPlatorm.tag == "stairsUp")
             transform.Translate(0, -.06f, 0);
 
-        if (PlayerController.curretPlatorm.tag == "stairsDonw")
+        if (PlayerController._curretPlatorm.tag == "stairsDonw")
             transform.Translate(0, .06f, 0);
     }
 }

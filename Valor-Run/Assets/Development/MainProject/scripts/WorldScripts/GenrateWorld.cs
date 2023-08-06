@@ -21,10 +21,10 @@ public class GenrateWorld : MonoBehaviour
         if (lastPlatForm != null)
         {
             if(lastPlatForm.tag == "platformTSection")
-                dummyTraveller.transform.position = lastPlatForm.transform.position + PlayerController.player.transform.forward * 20;
+                dummyTraveller.transform.position = lastPlatForm.transform.position + PlayerController._player.transform.forward * 20;
 
             else
-                dummyTraveller.transform.position = lastPlatForm.transform.position + PlayerController.player.transform.forward * 60; // common value for z change in other places also if you add new sections 
+                dummyTraveller.transform.position = lastPlatForm.transform.position + PlayerController._player.transform.forward * 60; // common value for z change in other places also if you add new sections 
 
 
             if (lastPlatForm.tag == "stairsUp")

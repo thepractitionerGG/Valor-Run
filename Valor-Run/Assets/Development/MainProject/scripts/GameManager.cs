@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public int wings;
     private float distanceInFloat;
 
-    public static float maxLeftSide = 2.4f;
-    public static float maxRightSide = -2.4f;
+    public static float maxLeftSide = 2f;
+    public static float maxRightSide = -2f;
 
     public GameObject _inGameUi;
     public GameObject _menuUI;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         DisableTouch();
         _menuUI.SetActive(false);
         _inGameUi.SetActive(true);
-        PlayerController.playerController.StartRunning();
+        PlayerController._playerController.StartRunning();
         SetGameState(GameManager.GameState.Running);
     }
 
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         coins += s;
         if (coinCollected != null)
         {
-            coinCollected.text = "Coins " + coins;
+            coinCollected.text = coins.ToString();
         }
     }
 
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         wings += s;
         if (WingsCollected != null)
         {
-            WingsCollected.text = "Wings " + wings;
+            WingsCollected.text = wings.ToString();
         }
     }
 
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameState == GameState.Running)
         {
-            distanceInFloat += 2 * Time.deltaTime;
+            distanceInFloat += 3 * Time.deltaTime;
         }
     }
 
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.Running)
         { 
             distance = (int)distanceInFloat;
-            distanceScore.text = "Score: "+ Mathf.Abs(distance).ToString();
+            distanceScore.text = Mathf.Abs(distance).ToString();
         }
     }
 

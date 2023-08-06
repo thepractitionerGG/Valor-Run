@@ -33,7 +33,7 @@ public class MoveableObstacle : MonoBehaviour
     {
         if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running)
         {
-            StopAnimation();
+            gameObject.SetActive(false);
             return;
         }
 
@@ -41,10 +41,10 @@ public class MoveableObstacle : MonoBehaviour
      
 
         if(gameObject.name=="Arrow")
-            transform.position += PlayerController.player.transform.forward * -speedArrow;
+            transform.position += PlayerController._player.transform.forward * -speedArrow;
 
         if(gameObject.name=="Elephant")
-            transform.position += PlayerController.player.transform.forward * -speedElephant;
+            transform.position += PlayerController._player.transform.forward * -speedElephant;
     }
 
     private void OnTriggerEnter(Collider other)
