@@ -141,63 +141,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.335166, y: 7.8943844, z: 1.3126591}
   m_Center: {x: 0, y: 4.188078, z: -29.343666}
---- !u!1001 &5143928650523126443
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7011046793223333751}
-    m_Modifications:
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.7059798
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5436826
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.110001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737210073021135904, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5401544226421073562, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
-      propertyPath: m_Name
-      value: Coin Krishna Variant
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a33bad63507d20a4ca4cffc414d1770a, type: 3}
 --- !u!1001 &6327004757649324926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,15 +258,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacles Set 01
       objectReference: {fileID: 0}
+    - target: {fileID: 6080656158129503097, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
 --- !u!4 &5808978945921973643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3589824629902592273, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
-  m_PrefabInstance: {fileID: 7011046794539578522}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7011046793223333751 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1369166829, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
   m_PrefabInstance: {fileID: 7011046794539578522}
   m_PrefabAsset: {fileID: 0}
