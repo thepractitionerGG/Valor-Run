@@ -7,7 +7,7 @@ public class MoveableObstacle : MonoBehaviour
 {
     private float speedArrow = 0;
     private float speedElephant = 0;
-    [SerializeField] Vector3 startingPos;
+    Vector3 startingPos;
 
     private void Awake()
     {

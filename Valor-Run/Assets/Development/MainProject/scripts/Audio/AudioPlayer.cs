@@ -23,7 +23,7 @@ public class AudioPlayer : MonoBehaviour
         audioSorceObject.name = "audioObject";
         audioSorceObject.AddComponent<AudioSource>();
         audioSorceObject.GetComponent<AudioSource>().clip = clip;
-        audioSorceObject.GetComponent<AudioSource>().volume = .5f;
+        audioSorceObject.GetComponent<AudioSource>().volume = .2f;
         Instantiate(audioSorceObject, transform);
 
         while (audioSorceObject.GetComponent<AudioSource>().isPlaying)
