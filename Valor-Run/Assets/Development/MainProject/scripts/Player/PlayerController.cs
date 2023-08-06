@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController playerController;
 
-    // create all thge variables for the runner here  total coins collected, HighScore, wings collected, highest distance traveled 
+
+
+   // create a variable to store the collider height at start and use it in game # ;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
             GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
             GameManager.gameManagerSingleton._retryUI.SetActive(true);
             GameManager.gameManagerSingleton._inGameUi.SetActive(false);
+            GetComponent<Rigidbody>().useGravity = true;
             // Make a Switch case in game manager which handles the case when a enum is changed only if teh game is becoming complex like this ;
             // make a save score condition here
             return;
@@ -436,6 +439,57 @@ public class PlayerController : MonoBehaviour
             targetPosition,
             transform.position.z
         );
+    }
+
+    IEnumerator DecreaseColliderSizeCoroutine(float slideDuration)
+    {
+        // Store the initial collider size
+        float initialColliderSize = GetComponent<CapsuleCollider>().height;
+
+        float targetHeight = initialColliderSize/ 2f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < slideDuration)
+        {
+            float normalizedTime = elapsedTime / slideDuration;
+            float newHeight = Mathf.Lerp(initialColliderSize, targetHeight, normalizedTime);
+
+            // Update the collider size
+            GetComponent<CapsuleCollider>().height = newHeight;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Make sure to set the exact target size to avoid any inaccuracies
+        GetComponent<CapsuleCollider>().height = targetHeight;
+
+        // Start the coroutine to increase the collider size back to normal
+        StartCoroutine(IncreaseColliderSizeCoroutine(slideDuration));
+    }
+    IEnumerator IncreaseColliderSizeCoroutine(float slideDuration)
+    {
+        yield return new WaitForSeconds(1f);
+        // Store the current and target collider sizes
+        float initialColliderSize = GetComponent<CapsuleCollider>().height;
+        float targetColliderSize = GetComponent<CapsuleCollider>().height*2; // You need to set this variable to the original collider size in the Start or Awake method.
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < slideDuration)
+        {
+            float normalizedTime = elapsedTime / slideDuration;
+            float newHeight = targetColliderSize;
+
+            // Update the collider size
+            GetComponent<CapsuleCollider>().height = newHeight;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Make sure to set the exact target size to avoid any inaccuracies
+        GetComponent<CapsuleCollider>().height = targetColliderSize;
     }
 
     private int CounEnabledPlatforms() // this function is for counting howmany platfomrs are active in gameview ain game time and the tag is helping us to get idea
