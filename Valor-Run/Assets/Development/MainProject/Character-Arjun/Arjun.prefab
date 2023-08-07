@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSwipeDistance: 100
-  _jumpDuration: 0.7
+  _jumpDuration: 0.4
   _jumpSpeed: 6
 --- !u!1 &3510526211370652017
 GameObject:
