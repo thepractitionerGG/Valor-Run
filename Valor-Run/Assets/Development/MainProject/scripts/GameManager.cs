@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public bool touchDisabled;
 
     public AudioData audioData;
+    public VFXData vfxData;
     public enum GameState
     {
         InMenu,

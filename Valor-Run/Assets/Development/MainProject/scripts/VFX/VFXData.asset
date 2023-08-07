@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b0369031ad4d1c4b910eb106029f483, type: 3}
+  m_Name: VFXData
+  m_EditorClassIdentifier: 
+  _arrowHit: {fileID: 19800000, guid: 60be4ee4eba28704b95842e52dcda7bb, type: 3}
+  _coinCollection: {fileID: 198405478074982118, guid: 6d71eced18a4bae4dadfa700add43257, type: 3}
+  _elephantHit: {fileID: 3628329840663550863, guid: facdeade91fbbbf49aad753226f2dfda, type: 3}
+  _fireMonsterHit: {fileID: 5658699589119539143, guid: 852e0a5b18a4628448fa7fbb64b6e8d7, type: 3}
+  _treasureCollection: {fileID: 19800006, guid: 9ee3b5d142a0a5d4f95a1c27c76d5748, type: 3}
+  _hitCameraShake: {fileID: 1141330259687333425, guid: 1cf5ca3a600ca4e42b944352ff162157, type: 3}
