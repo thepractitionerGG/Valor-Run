@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public void StartRunning()
     {
         _anim.SetBool("isRunning", true);
+        GetComponent<AudioSource>().enabled = true;
         GenrateWorld.RunDummy();
     }
 
@@ -63,13 +64,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             _curretPlatorm = collision.gameObject;
+            GetComponent<AudioSource>().enabled = true;
         }
     }
 
     private void DeathSequence(Collision collision)
     {
         // do the shlock tranissiton here #
-        
+        GetComponent<AudioSource>().enabled = false;
         VfxAndAudio(collision);
 
         _anim.SetTrigger("isDead");
@@ -195,7 +197,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Mathf.Abs(swipeDistanceSide) > _minSwipeDistance && touch.phase==TouchPhase.Ended)
                     {
-
+                        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ArjunSlidingLeftRight, transform);
                         // Check swipe direction
                         if (swipeDistanceSide < 0)
                         {
@@ -373,6 +375,7 @@ public class PlayerController : MonoBehaviour
     {  
         if (!_inAir)
         {
+            GetComponent<AudioSource>().enabled = false;
             _inAir = true;
             StopAllCoroutines();
             StartCoroutine(JumpCoroutine());

@@ -15,7 +15,5 @@ public class VFXController : MonoBehaviour
     {
         ParticleSystem particle = Instantiate(particleSystem);
         particle.transform.position =spawnPos;
-
-
     }
 }
