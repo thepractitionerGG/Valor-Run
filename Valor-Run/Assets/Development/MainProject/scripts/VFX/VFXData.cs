@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "VFXData", menuName = "SOs/VFXData")]
-public class VFXObject : ScriptableObject
+public class VFXData : ScriptableObject
 {
     [SerializeField] ParticleSystem _arrowHit;
     public ParticleSystem ArrowHit => _arrowHit;

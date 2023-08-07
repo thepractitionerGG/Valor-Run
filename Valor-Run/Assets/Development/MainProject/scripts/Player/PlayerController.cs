@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,9 +27,6 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody _rb;
 
-    // create a variable to store the collider height at start and use it in game # ;
-    // corutine pronblem stp one before going to next ok?
-
     private void Start()
     {
         _playerController = this;
@@ -47,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public void StartRunning()
     {
         _anim.SetBool("isRunning", true);
+        GetComponent<AudioSource>().enabled = true;
         GenrateWorld.RunDummy();
     }
 
@@ -54,21 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            // do the shlock tranissiton here #
-            AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ObstacleHit, transform);
-           
-      
-            _anim.SetTrigger("isDead");
-            GetComponent<PlayerDataManager>().SavePlayerData(GameManager.gameManagerSingleton.distance
-                                                            , GameManager.gameManagerSingleton.coins,
-                                                            GameManager.gameManagerSingleton.wings);
-
-            GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
-            GameManager.gameManagerSingleton._retryUI.SetActive(true);
-            GameManager.gameManagerSingleton._inGameUi.SetActive(false);
-            _rb.useGravity = true;
-            // Make a Switch case in game manager which handles the case when a enum is changed only if teh game is becoming complex like this ;
-            // make a save score condition here
+            DeathSequence(collision);
             return;
         }
 
@@ -81,14 +63,58 @@ public class PlayerController : MonoBehaviour
 
         else
         {
-            _curretPlatorm = collision.gameObject;  /// there might be and error here about the current platform not being 
-                                         ///updated when we shift it while jumping #
+            _curretPlatorm = collision.gameObject;
+            GetComponent<AudioSource>().enabled = true;
         }
     }
 
-   
+    private void DeathSequence(Collision collision)
+    {
+        // do the shlock tranissiton here #
+        GetComponent<AudioSource>().enabled = false;
+        VfxAndAudio(collision);
 
-  
+        _anim.SetTrigger("isDead");
+        SaveScore();
+
+        GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
+        GameManager.gameManagerSingleton._retryUI.SetActive(true);
+        GameManager.gameManagerSingleton._inGameUi.SetActive(false);
+
+        _rb.useGravity = true;
+        return;
+    }
+
+    private void SaveScore()
+    {
+        GetComponent<PlayerDataManager>().SavePlayerData(GameManager.gameManagerSingleton.distance
+                                                        , GameManager.gameManagerSingleton.coins,
+                                                        GameManager.gameManagerSingleton.wings);
+    }
+
+    private void VfxAndAudio(Collision collision) // if a new obstalce is created its vfx and audio shall be addded here and a better way to distanguish ti should be there
+    {
+        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ObstacleHit, transform);
+        if (collision.gameObject.name == "Elephant")
+        {
+            VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.ElephantHit, 
+                                                    new Vector3(transform.position.x, transform.position.y + 1, transform.position.z + .5f));
+        }
+
+        if (collision.gameObject.name == "Arrow")
+        {
+            VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.ArrowHit, 
+                    new Vector3(transform.position.x, transform.position.y + 2, transform.position.z + .5f));
+        }
+
+        else if(collision.gameObject.name != "Elephant"|| collision.gameObject.name != "Arrow")
+        {
+            VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.FireMonsterHit, this.transform.position);
+        }
+    }
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -132,7 +158,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
       if (GameManager.gameManagerSingleton.GetGameState()!=GameManager.GameState.Running) return;
 
@@ -171,7 +197,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Mathf.Abs(swipeDistanceSide) > _minSwipeDistance && touch.phase==TouchPhase.Ended)
                     {
-
+                        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ArjunSlidingLeftRight, transform);
                         // Check swipe direction
                         if (swipeDistanceSide < 0)
                         {
@@ -193,7 +219,7 @@ public class PlayerController : MonoBehaviour
                     {
                         Jump();
                     }
-                    else if (swipeDownDistance > _minSwipeDistance)
+                    else if (swipeDownDistance > _minSwipeDistance) // between the following two function, only one will be called according to the position of the player
                     {
                         SlideDown();
                         SlideUnder();
@@ -349,6 +375,7 @@ public class PlayerController : MonoBehaviour
     {  
         if (!_inAir)
         {
+            GetComponent<AudioSource>().enabled = false;
             _inAir = true;
             StopAllCoroutines();
             StartCoroutine(JumpCoroutine());

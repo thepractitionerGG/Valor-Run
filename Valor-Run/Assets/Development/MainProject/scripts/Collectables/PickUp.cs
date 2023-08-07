@@ -27,12 +27,15 @@ public class PickUp : MonoBehaviour
             {
                 GameManager.gameManagerSingleton.UpdateWings(1);
                 AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.WingsCollected,transform);
+                VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.TreasureCollection, 
+                    new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
             }
 
             else
             {
                 GameManager.gameManagerSingleton.UpdateCoins(1);
                 AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.CoinCollected, transform);
+                VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.CoinCollection, this.transform.position);
             }
 
             mrs.enabled = false;
