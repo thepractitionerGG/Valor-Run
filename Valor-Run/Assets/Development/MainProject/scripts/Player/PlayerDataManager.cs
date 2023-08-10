@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    public Text coinCountText;
-    public Text wingsCountText;
-    public Text highScoreText;
+    public TMP_Text coinCountText;
+    public TMP_Text wingsCountText;
+    public TMP_Text highScoreText;
     public void SavePlayerData(int scoreCountLastGame, int coinCount, int wingsCount)
     {
         int wingsCountAfterAddition = PlayerPrefs.GetInt("WingsCount", 0) + wingsCount;
