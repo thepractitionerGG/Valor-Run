@@ -10,7 +10,7 @@ public class PlayerDataManager : MonoBehaviour
     public void SavePlayerData(int scoreCountLastGame, int coinCount, int wingsCount)
     {
         int wingsCountAfterAddition = PlayerPrefs.GetInt("WingsCount", 0) + wingsCount;
-        int CoinsCountAfterAddition = PlayerPrefs.GetInt("WingsCount", 0) + wingsCount;
+        int CoinsCountAfterAddition = PlayerPrefs.GetInt("CoinCount", 0) + coinCount;
 
         PlayerPrefs.SetInt("CoinCount", CoinsCountAfterAddition);
         PlayerPrefs.SetInt("WingsCount", wingsCountAfterAddition);

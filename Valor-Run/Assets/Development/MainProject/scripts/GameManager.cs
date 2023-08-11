@@ -104,17 +104,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetScene()
     {
-        //_menuUI.SetActive(true);
-        //_retryUI.SetActive(false);
-        //PlayerController.playerController.ResetAnimatorToIdleState();
-        //Pools.singleton.ResetPool();
-        //Pools.singleton.AddPlatformsToPooledItems();
-        //GenrateWorld.RunDummy();
-        //StartingPlatform.SetActive(true);
-        //StartingPlatform.transform.position = startingPlatformInitPos;
-         
-        // remove all the extra functions above; they were created for reset'
-
         SceneManager.LoadSceneAsync("SccrollingWorld");
     }
     
