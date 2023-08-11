@@ -104,17 +104,6 @@ public class GameManager : MonoBehaviour
 
     public void ResetScene()
     {
-        //_menuUI.SetActive(true);
-        //_retryUI.SetActive(false);
-        //PlayerController.playerController.ResetAnimatorToIdleState();
-        //Pools.singleton.ResetPool();
-        //Pools.singleton.AddPlatformsToPooledItems();
-        //GenrateWorld.RunDummy();
-        //StartingPlatform.SetActive(true);
-        //StartingPlatform.transform.position = startingPlatformInitPos;
-         
-        // remove all the extra functions above; they were created for reset'
-
         SceneManager.LoadSceneAsync("SccrollingWorld");
     }
     
@@ -131,6 +120,16 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (_menuUI.activeInHierarchy)
+        {
+            _menuUI.GetComponent<AudioSource>().volume = AudioSettings.audioSettings.LobbyMusic;
+        }
+
+        if (_inGameUi.activeInHierarchy)
+        {
+            _inGameUi.GetComponent<AudioSource>().volume = AudioSettings.audioSettings.InGameMusic;
+        }
+
         if (gameState == GameState.Running)
         {
             distanceInFloat += 3 * Time.deltaTime;

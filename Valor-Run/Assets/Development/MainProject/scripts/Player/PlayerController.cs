@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _capsulColliderHeightAtStart = GetComponent<CapsuleCollider>().height;
+       
         GenrateWorld.RunDummy();
     }
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         _anim.SetBool("isRunning", true);
         GetComponent<AudioSource>().enabled = true;
+        GetComponent<AudioSource>().volume = AudioSettings.audioSettings.SoundVolume;
         GenrateWorld.RunDummy();
     }
 
@@ -94,7 +96,9 @@ public class PlayerController : MonoBehaviour
 
     private void VfxAndAudio(Collision collision) // if a new obstalce is created its vfx and audio shall be addded here and a better way to distanguish ti should be there
     {
-        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ObstacleHit, transform);
+        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ObstacleHit, transform, AudioSettings.audioSettings.SoundVolume);
+
+
         if (collision.gameObject.name == "Elephant")
         {
             VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.ElephantHit, 
@@ -162,6 +166,7 @@ public class PlayerController : MonoBehaviour
     {
       if (GameManager.gameManagerSingleton.GetGameState()!=GameManager.GameState.Running) return;
 
+       
     #if UNITY_EDITOR
             // Code to execute when running in the Unity Editor
             MovementWindows();
@@ -197,7 +202,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Mathf.Abs(swipeDistanceSide) > _minSwipeDistance && touch.phase==TouchPhase.Ended)
                     {
-                        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ArjunSlidingLeftRight, transform);
+                        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ArjunSlidingLeftRight, transform, AudioSettings.audioSettings.SoundVolume);
                         // Check swipe direction
                         if (swipeDistanceSide < 0)
                         {
@@ -382,7 +387,7 @@ public class PlayerController : MonoBehaviour
             _anim.SetBool("isJumping", true);
             _anim.SetBool("isSliding", false); //  this is done because the animation after jumping doesnt go back to sliding
             GetComponent<CapsuleCollider>().height = _capsulColliderHeightAtStart;
-            AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.Jump, transform);
+            AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.Jump, transform, AudioSettings.audioSettings.SoundVolume);
         }
     }
 
@@ -515,43 +520,6 @@ public class PlayerController : MonoBehaviour
         // Make sure to set the exact target size to avoid any inaccuracies
         GetComponent<CapsuleCollider>().height = targetColliderSize;
     }
-
-    //IEnumerator GoDownCoroutine() // as now we are using gravity we might not need a simple go down corutine but we only need one for swipe down;
-    //{
-    //    float GoDownSpeed = 6f; // Speed at which the character rolls down
-    //    float minHeight = _heightOnGround; // The lowest height you want the character to reach
-
-    //    while (transform.position.y > minHeight)
-    //    {
-    //        transform.position = new Vector3(
-    //            transform.position.x,
-    //            transform.position.y - GoDownSpeed * Time.deltaTime,
-    //            transform.position.z
-    //        );
-
-    //        // Ensure the character doesn't go below the minimum height
-    //        if (transform.position.y < minHeight)
-    //        {
-    //            transform.position = new Vector3(
-    //                transform.position.x,
-    //                minHeight,
-    //                transform.position.z
-    //            );
-    //        }
-
-    //        yield return null;
-    //    }
-
-    //     _rb.useGravity = true;
-
-    //     transform.position = new Vector3(
-    //     transform.position.x,
-    //     minHeight,
-    //     transform.position.z
-    // );
-
-    //    _anim.SetBool("isJumping", false);
-    //}
 
     private int CounEnabledPlatforms() // this function is for counting howmany platfomrs are active in gameview ain game time and the tag is helping us to get idea
     {
