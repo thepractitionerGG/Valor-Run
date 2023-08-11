@@ -131,6 +131,16 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (_menuUI.activeInHierarchy)
+        {
+            _menuUI.GetComponent<AudioSource>().volume = AudioSettings.audioSettings.LobbyMusic;
+        }
+
+        if (_inGameUi.activeInHierarchy)
+        {
+            _inGameUi.GetComponent<AudioSource>().volume = AudioSettings.audioSettings.InGameMusic;
+        }
+
         if (gameState == GameState.Running)
         {
             distanceInFloat += 3 * Time.deltaTime;

@@ -10,12 +10,12 @@ public class AudioPlayer : MonoBehaviour
     {
         audioPlayerSingle = this;
     }
-    public void PlayAudioOnce(AudioClip clip,Transform transform)
+    public void PlayAudioOnce(AudioClip clip,Transform transform,float volume)
     {
-        StartCoroutine(PlayAudioOnceCourtine(clip, transform));
+        StartCoroutine(PlayAudioOnceCourtine(clip, transform,volume));
     }
 
-    IEnumerator PlayAudioOnceCourtine(AudioClip clip,Transform transform)
+    IEnumerator PlayAudioOnceCourtine(AudioClip clip,Transform transform,float volume)
     {
 
         GameObject audioSorceObject = new GameObject();
@@ -23,7 +23,7 @@ public class AudioPlayer : MonoBehaviour
         audioSorceObject.name = "audioObject";
         audioSorceObject.AddComponent<AudioSource>();
         audioSorceObject.GetComponent<AudioSource>().clip = clip;
-        audioSorceObject.GetComponent<AudioSource>().volume = .2f;
+        audioSorceObject.GetComponent<AudioSource>().volume = volume;
         Instantiate(audioSorceObject, transform);
 
         while (audioSorceObject.GetComponent<AudioSource>().isPlaying)

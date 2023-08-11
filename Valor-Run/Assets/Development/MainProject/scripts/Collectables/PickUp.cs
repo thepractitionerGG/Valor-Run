@@ -26,7 +26,7 @@ public class PickUp : MonoBehaviour
             if (gameObject.name == "ValorWings")
             {
                 GameManager.gameManagerSingleton.UpdateWings(1);
-                AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.WingsCollected,transform);
+                AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.WingsCollected,transform,AudioSettings.audioSettings.SoundVolume);
                 VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.TreasureCollection, 
                     new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
             }
@@ -34,7 +34,7 @@ public class PickUp : MonoBehaviour
             else
             {
                 GameManager.gameManagerSingleton.UpdateCoins(1);
-                AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.CoinCollected, transform);
+                AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.CoinCollected, transform, AudioSettings.audioSettings.SoundVolume);
                 VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.CoinCollection, this.transform.position);
             }
 
