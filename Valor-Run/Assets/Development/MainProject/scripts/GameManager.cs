@@ -136,6 +136,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+   public void PauseGame()
+   {
+        gameState = GameManager.GameState.InMenu;
+   }
+
+   public void ResumeGame()
+   {
+        gameState = GameManager.GameState.Running;
+   }
+
     private void  LateUpdate()
     {
         if (gameState == GameState.Running)
