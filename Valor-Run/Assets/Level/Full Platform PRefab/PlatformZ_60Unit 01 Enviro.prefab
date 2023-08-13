@@ -210,10 +210,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5437585147665527872}
     m_Modifications:
-    - target: {fileID: 1130732915957797187, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
-      propertyPath: moveableObjectContainerArray.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3589824629902592273, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -261,10 +257,6 @@ PrefabInstance:
     - target: {fileID: 4084224946122761218, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
       propertyPath: m_Name
       value: Obstacles Set 01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6080656158129503097, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61925f9efc7ff114690b5bb3a1d91505, type: 3}
