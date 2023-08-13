@@ -63249,6 +63249,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8379392221971288718, guid: 04099240d6ffd0e499ac21a8571d4e1c, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379392221971288718, guid: 04099240d6ffd0e499ac21a8571d4e1c, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime1
       value: 7325
       objectReference: {fileID: 0}
