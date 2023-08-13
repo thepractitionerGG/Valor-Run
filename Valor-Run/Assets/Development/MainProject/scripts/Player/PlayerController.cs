@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running) { GetComponent<AudioSource>().enabled = false; return; }
 
