@@ -161,8 +161,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-      if (GameManager.gameManagerSingleton.GetGameState()!=GameManager.GameState.Running) return;
+        if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running) { GetComponent<AudioSource>().enabled = false; return; }
 
+        if (transform.position.y > 8)
+        {
+            _rb.useGravity=true;
+        }
        
     #if UNITY_EDITOR
             // Code to execute when running in the Unity Editor
