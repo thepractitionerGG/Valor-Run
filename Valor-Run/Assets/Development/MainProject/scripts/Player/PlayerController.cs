@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     int _maxPlatformCount = 3;
 
-    [SerializeField] private float _minSwipeDistance = 100f;
+    [SerializeField] private float _minSwipeDistance = 10f;
     float _heightOnGround;
     float _capsulColliderHeightAtStart;
     [SerializeField] float _jumpDuration;
@@ -117,9 +117,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag=="Coin")
@@ -162,7 +159,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running) { GetComponent<AudioSource>().enabled = false; return; }
 
@@ -195,7 +192,7 @@ public class PlayerController : MonoBehaviour
                 // Store touch start position
                 _touchStartPosition = touch.position;
             }
-            else if ( Mathf.Abs(touch.position.x-_touchStartPosition.x)> 100 || Mathf.Abs( touch.position.y- _touchStartPosition.y) > 100)
+            else if ( Mathf.Abs(touch.position.x-_touchStartPosition.x)> _minSwipeDistance || Mathf.Abs( touch.position.y- _touchStartPosition.y) > _minSwipeDistance)
             {
                 // Calculate swipe distance
                 float swipeDistanceSide = touch.position.x - _touchStartPosition.x;
@@ -204,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Mathf.Abs(swipeDistanceSide) > Mathf.Abs(swipeUpDistance))
                 {
-                    if (Mathf.Abs(swipeDistanceSide) > _minSwipeDistance && touch.phase==TouchPhase.Ended)
+                    if (Mathf.Abs(swipeDistanceSide) > _minSwipeDistance)
                     {
                         AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ArjunSlidingLeftRight, transform, AudioSettings.audioSettings.SoundVolume);
                         // Check swipe direction
@@ -315,7 +312,19 @@ public class PlayerController : MonoBehaviour
     {
 
         float initialPosition = transform.position.x;
-        float targetPosition = transform.position.x+2.5f; 
+
+        float targetPosition=0;
+
+        if (transform.position.x>=-2.5f && transform.position.x < 0)
+        {
+            targetPosition = 0; 
+        }
+
+        if (transform.position.x >= 0f && transform.position.x < 2.5f)
+        {
+            targetPosition = 2.5f;
+        }
+
         float elapsedTime = 0f;
 
         while (elapsedTime < slideDuration)
@@ -353,7 +362,18 @@ public class PlayerController : MonoBehaviour
     {
 
         float initialPosition = transform.position.x;
-        float targetPosition = transform.position.x - 2.5f; 
+        float targetPosition = 0;
+
+        if (transform.position.x > -2.5f && transform.position.x <= 0)
+        {
+            targetPosition = -2.5f;
+        }
+
+        if (transform.position.x > 0f && transform.position.x <= 2.5f)
+        {
+            targetPosition = 0;
+        }
+
         float elapsedTime = 0f;
 
         while (elapsedTime < slideDuration)
