@@ -41552,7 +41552,6 @@ MonoBehaviour:
   moveableObjectContainerArray:
   - {fileID: 6329466026304785571}
   - {fileID: 7277963883383366479}
-  - {fileID: 0}
 --- !u!1 &2486788886177863083
 GameObject:
   m_ObjectHideFlags: 0
@@ -83380,6 +83379,10 @@ PrefabInstance:
       value: 0.05490195
       objectReference: {fileID: 0}
     - target: {fileID: 8379392221971288718, guid: 04099240d6ffd0e499ac21a8571d4e1c, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379392221971288718, guid: 04099240d6ffd0e499ac21a8571d4e1c, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
       value: 0.44313726
       objectReference: {fileID: 0}
@@ -83514,7 +83517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2930888856963017572, guid: 52e9ad5aeb776d047a6aabbceade4737, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 2930888856963017572, guid: 52e9ad5aeb776d047a6aabbceade4737, type: 3}
       propertyPath: m_LocalPosition.z
