@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5004197883823507870}
   - component: {fileID: 1979326305550430015}
   m_Layer: 0
-  m_Name: platformZSplit_60Unit 06Enviro2
+  m_Name: platformZSplit_60Unit 06EnviroOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
