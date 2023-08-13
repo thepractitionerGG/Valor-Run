@@ -258,10 +258,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacles Set 02
       objectReference: {fileID: 0}
-    - target: {fileID: 3257213903838312451, guid: c2d955853dbd12841ba87a4706f563bf, type: 3}
-      propertyPath: moveableObjectContainerArray.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2d955853dbd12841ba87a4706f563bf, type: 3}
 --- !u!4 &4924705277344446487 stripped
