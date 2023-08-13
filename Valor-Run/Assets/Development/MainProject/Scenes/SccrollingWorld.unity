@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.13333334, g: 0.22352941, b: 0.43529412, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.022
+  m_FogDensity: 0.018
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30504286, g: 0.22003642, b: 0.34850866, a: 1}
+  m_Sun: {fileID: 2020876729}
+  m_IndirectSpecularColor: {r: 0.587024, g: 0.5084687, b: 0.62800795, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -266,6 +266,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arjun
       objectReference: {fileID: 0}
+    - target: {fileID: 4375334662655922489, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375334662655922489, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec58166fb7dc2b94db697abf2a2a54e2, type: 2}
+    - target: {fileID: 4375334662655922489, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46ebbd3da78027840ad33ad03d9d8548, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
 --- !u!114 &966181302 stripped
@@ -629,7 +641,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
