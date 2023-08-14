@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            DeathSequence(collision);
+            DeathSequence(collision.gameObject.name);
             return;
         }
 
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void DeathSequence(Collision collision)
+    public void DeathSequence(string collision)
     {
         // do the shlock tranissiton here #
         GetComponent<AudioSource>().enabled = false;
@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
         GameManager.gameManagerSingleton._inGameUi.SetActive(false);
 
         _rb.useGravity = true;
-        return;
     }
 
     private void SaveScore()
@@ -94,24 +93,29 @@ public class PlayerController : MonoBehaviour
                                                         GameManager.gameManagerSingleton.wings);
     }
 
-    private void VfxAndAudio(Collision collision) // if a new obstalce is created its vfx and audio shall be addded here and a better way to distanguish ti should be there
+    private void VfxAndAudio(string collision) // if a new obstalce is created its vfx and audio shall be addded here and a better way to distanguish ti should be there
     {
         AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ObstacleHit, transform, AudioSettings.audioSettings.SoundVolume);
 
 
-        if (collision.gameObject.name == "Elephant")
+        if (collision == "Elephant")
         {
             VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.ElephantHit, 
                                                     new Vector3(transform.position.x, transform.position.y + 1, transform.position.z + .5f));
         }
 
-        if (collision.gameObject.name == "Arrow")
+        if (collision == "Arrow")
         {
             VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.ArrowHit, 
                     new Vector3(transform.position.x, transform.position.y + 2, transform.position.z + .5f));
         }
 
-        else if(collision.gameObject.name != "Elephant"|| collision.gameObject.name != "Arrow")
+        if (collision == "KillPlane")
+        {
+            // do here 
+        }
+
+        else if(collision!= "Elephant"|| collision != "Arrow")
         {
             VFXController._vFXControllerSingle.DoVfxEffect(GameManager.gameManagerSingleton.vfxData.FireMonsterHit, this.transform.position);
         }
