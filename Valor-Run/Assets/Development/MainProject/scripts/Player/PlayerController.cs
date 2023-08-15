@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Animator _anim;
-
     public static GameObject _player;
     public static GameObject _curretPlatorm;
     public static PlayerController _playerController;
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpDuration;
     [SerializeField] float _jumpSpeed;
 
-    Rigidbody _rb;
+    public Rigidbody _rb;
 
     private void Start()
     {
@@ -166,7 +165,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetComponent<AudioSource>().volume = AudioSettings.audioSettings.SoundVolume;
-        if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running) { GetComponent<AudioSource>().enabled = false; return; }
+
+        if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running) 
+        { GetComponent<AudioSource>().enabled = false; return; }
 
         if (transform.position.y > 8)
         {

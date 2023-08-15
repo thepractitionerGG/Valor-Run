@@ -139,12 +139,27 @@ public class GameManager : MonoBehaviour
    public void PauseGame()
    {
         gameState = GameManager.GameState.InMenu;
-   }
+        PlayerController._playerController.GetComponent<Animator>().enabled = false;
 
-   public void ResumeGame()
-   {
+        if (PlayerController._inAir)
+        {
+            PlayerController._playerController._rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+       
+    }
+
+    public void ResumeGame()
+    {
         gameState = GameManager.GameState.Running;
-   }
+        PlayerController._playerController.GetComponent<Animator>().enabled = true;
+
+        if (PlayerController._inAir)
+        {
+            PlayerController._playerController._rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
+        }
+
+
+    }
 
     private void  LateUpdate()
     {
