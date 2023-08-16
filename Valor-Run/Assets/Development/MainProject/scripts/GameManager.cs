@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     public Text coinCollected;
     public Text distanceScore;
     public Text WingsCollected;
+
+    [SerializeField] Text coinsCollectedRT;
+    [SerializeField] Text distanceScoreRT;
+    [SerializeField] Text WingsCollectedRT;
+
     public int coins;
     public int distance;
     public int wings;
@@ -161,6 +166,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void UpdateRetryScreen()
+    {
+        coinsCollectedRT.text = coins.ToString();
+        distanceScoreRT.text = distance.ToString();
+        WingsCollectedRT.text = wings.ToString();
+    }
     private void  LateUpdate()
     {
         if (gameState == GameState.Running)

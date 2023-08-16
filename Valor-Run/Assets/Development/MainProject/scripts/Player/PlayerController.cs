@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
         _anim.SetTrigger("isDead");
         SaveScore();
+        GameManager.gameManagerSingleton.UpdateRetryScreen();
 
         GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
         GameManager.gameManagerSingleton._retryUI.SetActive(true);

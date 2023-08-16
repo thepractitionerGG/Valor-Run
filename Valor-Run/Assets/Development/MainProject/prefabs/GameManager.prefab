@@ -51,6 +51,9 @@ MonoBehaviour:
   coinCollected: {fileID: 0}
   distanceScore: {fileID: 0}
   WingsCollected: {fileID: 0}
+  coinsCollectedRT: {fileID: 0}
+  distanceScoreRT: {fileID: 0}
+  WingsCollectedRT: {fileID: 0}
   coins: 0
   distance: 0
   wings: 0
