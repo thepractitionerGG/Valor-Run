@@ -4,34 +4,43 @@ using UnityEngine;
 
 public class EnvironmentAndObstaclesController : MonoBehaviour
 {
-    GameObject[] _obstacleList;
-    GameObject[] _environment;
+    [SerializeField] GameObject[] _obstacleList;
+    [SerializeField] GameObject[] _environment;
     int indexObs;
     int indexEnv;
 
+    bool _wasEnabledOnce;
+
     private void OnEnable()
     {
+        _wasEnabledOnce = true;
         SelectRandomObstacle();
         SelectRandomEnvironment();
     }
 
     private void SelectRandomEnvironment()
     {
-        indexEnv = Random.Range(0, _environment.Length);
-        _obstacleList[indexEnv].SetActive(true);
+        if (_wasEnabledOnce)
+        {
+            indexObs = Random.Range(0, _obstacleList.Length);
+            _obstacleList[indexObs].SetActive(true);
+        }
+      
     }
 
     private void SelectRandomObstacle()
     {
-        indexObs = Random.Range(0, _obstacleList.Length);
-        _environment[indexObs].SetActive(true);
+        if (_wasEnabledOnce)
+        {
+            indexEnv = Random.Range(0, _environment.Length);
+            _environment[indexEnv].SetActive(true);
+        }
     }
 
     private void OnDisable()
     {
-        _obstacleList[indexEnv].SetActive(false);
-        _environment[indexObs].SetActive(false);
-        indexObs = 0;
-        indexEnv = 0;
+        _wasEnabledOnce = false;
+        _obstacleList[indexObs].SetActive(false);
+        _environment[indexEnv].SetActive(false);
     }
 }

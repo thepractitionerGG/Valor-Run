@@ -206,6 +206,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 189656478, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 189656478, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9702957
+      objectReference: {fileID: 0}
+    - target: {fileID: 189656478, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.24192187
+      objectReference: {fileID: 0}
+    - target: {fileID: 189656478, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189656478, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189656478, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 582940608, guid: dade6e51bf793674dbf5d5003594a6dd, type: 3}
       propertyPath: coinCountText
       value: 
@@ -408,26 +432,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - prfab: {fileID: 2321419823432828931, guid: 3e34aeaddf62c8646a0af009b7ba2bfd, type: 3}
-    amount: 3
-    expandble: 0
   - prfab: {fileID: 4629135599750311674, guid: 1781addf89af1fd4390e9f3d07578d15, type: 3}
-    amount: 3
-    expandble: 0
-  - prfab: {fileID: 3709399927239164385, guid: fef722ce55eaeb74185a4b938086ae4b, type: 3}
-    amount: 3
-    expandble: 0
-  - prfab: {fileID: 9047101826402345926, guid: 09b23ae16efc2ba47beb1facbb7101a5, type: 3}
-    amount: 3
-    expandble: 0
-  - prfab: {fileID: 2730123587523416857, guid: ec52788c444b74947b6f71f5b8602a90, type: 3}
-    amount: 3
+    amount: 5
     expandble: 0
   - prfab: {fileID: 5978541153666161620, guid: 94fb0a51fcee32b428eaeccabc7db3e3, type: 3}
-    amount: 0
+    amount: 5
     expandble: 0
   - prfab: {fileID: 5988187756975411968, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-    amount: 0
+    amount: 5
     expandble: 0
   pooldItems: []
 --- !u!4 &1249608185
@@ -1036,6 +1048,10 @@ PrefabInstance:
     - target: {fileID: 7849748016099582552, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118335228394823194, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 9118335228530095886, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_IsActive
