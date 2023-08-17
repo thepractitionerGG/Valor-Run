@@ -91075,62 +91075,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2481380060722160785, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.030832225
-      objectReference: {fileID: 0}
-    - target: {fileID: 2481380060722160785, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.04137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 2554582502850281794, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.030832225
-      objectReference: {fileID: 0}
-    - target: {fileID: 2554582502850281794, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.04137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 2588270823875464571, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_Name
-      value: Environment 08 Thin
-      objectReference: {fileID: 0}
-    - target: {fileID: 2588270823875464571, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594588419693197987, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.030832225
-      objectReference: {fileID: 0}
-    - target: {fileID: 3594588419693197987, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.04137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596621029633196455, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.030832225
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596621029633196455, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.041372553
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524823597296728493, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.030832225
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524823597296728493, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.04137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510359874429009294, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.030832225
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510359874429009294, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.04137255
-      objectReference: {fileID: 0}
     - target: {fileID: 5988187756975411968, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
       propertyPath: m_Name
       value: platformZThin_60Unit 08Enviro
@@ -91182,22 +91126,6 @@ PrefabInstance:
     - target: {fileID: 6364010295671425466, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6546093003916647677, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.030832225
-      objectReference: {fileID: 0}
-    - target: {fileID: 6546093003916647677, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.04137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 8650228962577260604, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_Name
-      value: Obstacles Set 13 Thin
-      objectReference: {fileID: 0}
-    - target: {fileID: 8650228962577260604, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
