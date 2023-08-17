@@ -34,16 +34,18 @@ public class GenrateWorld : MonoBehaviour
         }
 
         lastPlatForm = p;
-        p.SetActive(true);
-        p.transform.position = dummyTraveller.transform.position;
-        p.transform.rotation = dummyTraveller.transform.rotation;
 
-        if (p.tag == "stairsDown")
-        {
-            dummyTraveller.transform.Translate(0, -5, 0);
-            p.transform.Rotate(0, 180, 0);
+            p.SetActive(true);
             p.transform.position = dummyTraveller.transform.position;
-        }
+            p.transform.rotation = dummyTraveller.transform.rotation;
+
+            if (p.tag == "stairsDown")
+            {
+                dummyTraveller.transform.Translate(0, -5, 0);
+                p.transform.Rotate(0, 180, 0);
+                p.transform.position = dummyTraveller.transform.position;
+            }
+
     }
 
    
