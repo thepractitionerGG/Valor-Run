@@ -505,7 +505,7 @@ public class PlayerController : MonoBehaviour
         // Store the initial collider size
         float initialColliderSize = _capsulColliderHeightAtStart;
 
-        float targetHeight = initialColliderSize/ 2f;
+        float targetHeight = initialColliderSize/ 2.5f;
         float elapsedTime = 0f;
 
         while (elapsedTime < slideDuration)
@@ -533,7 +533,7 @@ public class PlayerController : MonoBehaviour
         _anim.SetBool("isSliding", false);
 
         // Store the current and target collider sizes
-        float targetColliderSize = GetComponent<CapsuleCollider>().height*2; // You need to set this variable to the original collider size in the Start or Awake method.
+        float targetColliderSize = GetComponent<CapsuleCollider>().height*2.5f; // You need to set this variable to the original collider size in the Start or Awake method.
 
         float elapsedTime = 0f;
 

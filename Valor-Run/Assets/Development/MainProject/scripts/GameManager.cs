@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetScene()
     {
-        SceneManager.LoadSceneAsync("SccrollingWorld");
+        SceneManager.LoadSceneAsync("Game");
     }
     
     void DisableTouch()
@@ -143,27 +143,14 @@ public class GameManager : MonoBehaviour
 
    public void PauseGame()
    {
-        gameState = GameManager.GameState.InMenu;
-        PlayerController._playerController.GetComponent<Animator>().enabled = false;
-
-        if (PlayerController._inAir)
-        {
-            PlayerController._playerController._rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
-       
-    }
+        Time.timeScale = 0f;
+        touchDisabled = true;
+   }
 
     public void ResumeGame()
     {
-        gameState = GameManager.GameState.Running;
-        PlayerController._playerController.GetComponent<Animator>().enabled = true;
-
-        if (PlayerController._inAir)
-        {
-            PlayerController._playerController._rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
-        }
-
-
+        Time.timeScale = 1f;
+        touchDisabled = false;
     }
 
     public void UpdateRetryScreen()
