@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.58799726, g: 0.5081193, b: 0.6268758, a: 1}
+  m_IndirectSpecularColor: {r: 0.587024, g: 0.5084687, b: 0.62800795, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1059,10 +1059,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1532383008}
-    - target: {fileID: 9118335227733656587, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9118335229272073992, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_Name
       value: GameMenus
