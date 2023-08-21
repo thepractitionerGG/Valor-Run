@@ -154,12 +154,14 @@ public class GameManager : MonoBehaviour
 
         if (gameState == GameState.Running)
         {
-            distanceInFloat += 4*Time.deltaTime;
+            distanceInFloat += 6*Time.deltaTime;
         }
     }
 
    public void PauseGame()
    {
+        gameState = GameState.InMenu;
+
         Time.timeScale = 0f;
         touchDisabled = true;
         PlayerController._playerController._runningAudio.enabled = false;
@@ -167,7 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-      //StartCoroutine(ResumeGameCorutine());
+        gameState = GameState.Running;
         _timerText.gameObject.SetActive(true);
         PlayerController._playerController._runningAudio.enabled = true; /// might create a r=proble as when pause din mid air
         _pauseScreen.SetActive(false);
@@ -198,7 +200,39 @@ public class GameManager : MonoBehaviour
         { 
             distance = (int)distanceInFloat;
             distanceScore.text = Mathf.Abs(distance).ToString();
+
+            if (distance > 300)
+            {
+                Time.timeScale = 1.1f;
+                timeScaleValue = 1.1f;
+            }
+
+            if (distance > 700)
+            {
+                Time.timeScale = 1.2f;
+                timeScaleValue = 1.1f;
+            }
+
+            if (distance > 1300)
+            {
+                Time.timeScale = 1.3f;
+                timeScaleValue = 1.3f;
+            }
+
+            if (distance > 2100)
+            {
+                Time.timeScale = 1.4f;
+                timeScaleValue = 1.4f;
+            }
+
+            if (distance > 3500)
+            {
+                Time.timeScale = 1.5f;
+                timeScaleValue = 1.5f;
+            }
         }
+
+      
     }
 
     public void QuitGame()
