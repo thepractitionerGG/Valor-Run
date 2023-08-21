@@ -45,6 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankImage: {fileID: 0}
-  defaultRankImage: {fileID: 0}
-  rankImages: []
-  rankThresholds: 64000000e8030000d0070000b80b00008813000010270000
+  defaultRankImage: {fileID: 2800000, guid: 160a0157407fa1b408f7efae831e8730, type: 3}
+  rankImages:
+  - {fileID: 2800000, guid: 56d8926ef2c872b4c9f1ba74b012bfd4, type: 3}
+  - {fileID: 2800000, guid: 551a5225f39b9a641a68c705f3e4e1de, type: 3}
+  - {fileID: 2800000, guid: 51190c79786ead043b73a3973086d9ba, type: 3}
+  - {fileID: 2800000, guid: e73c2042ba79a0f49b97709dce019458, type: 3}
+  - {fileID: 2800000, guid: 01f13430c6d45a049b69fdb351fb9ac2, type: 3}
+  - {fileID: 2800000, guid: 37322d12cad11a545b79a497315b5bfa, type: 3}
+  - {fileID: 2800000, guid: 95b54994eff9c18449dc08f2417a7503, type: 3}
+  - {fileID: 2800000, guid: 8d01a49078dcd8943b88b3fe3cf44950, type: 3}
+  rankThresholds: e8030000c40900008813000010270000c8320000983a000039c70000410d0300

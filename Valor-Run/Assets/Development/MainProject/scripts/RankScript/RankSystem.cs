@@ -7,7 +7,7 @@ public class RankSystem : MonoBehaviour
     public Texture defaultRankImage;
     public Texture[] rankImages; // Copper, Bronze, Silver, Gold, Diamond, Champ
 
-    public int[] rankThresholds = { 100, 1000, 2000, 3000, 5000, 10000 };
+    public int[] rankThresholds;
 
     private int _playerHighScore;
 
