@@ -18,14 +18,17 @@ public class PlayerController : MonoBehaviour
 
     int _maxPlatformCount = 3;
 
-    [SerializeField] private float _minSwipeDistance = 10f;
+    
     float _heightOnGround;
     float _capsulColliderHeightAtStart;
+
+    [SerializeField] private float _minSwipeDistance = 10f;
     [SerializeField] float _jumpDuration;
     [SerializeField] float _jumpSpeed;
-
+    
     public Rigidbody _rb;
-
+    CapsuleCollider _capsuleCollider;
+    public AudioSource _runningAudio;
     private void Start()
     {
         _playerController = this;
@@ -35,15 +38,16 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _capsulColliderHeightAtStart = GetComponent<CapsuleCollider>().height;
-       
+        _runningAudio = GetComponent<AudioSource>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
         GenrateWorld.RunDummy();
     }
 
     public void StartRunning()
     {
         _anim.SetBool("isRunning", true);
-        GetComponent<AudioSource>().enabled = true;
-        GetComponent<AudioSource>().volume = AudioSettings.audioSettings.SoundVolume;
+        _runningAudio.enabled = true;
+        _runningAudio.volume = AudioSettings.audioSettings.SoundVolume;
         GenrateWorld.RunDummy();
     }
 
@@ -65,14 +69,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             _curretPlatorm = collision.gameObject;
-            GetComponent<AudioSource>().enabled = true;
+           _runningAudio.enabled = true;
         }
     }
 
     public void DeathSequence(string collision)
     {
         // do the shlock tranissiton here #
-        GetComponent<AudioSource>().enabled = false;
+        _runningAudio.enabled = false;
         VfxAndAudio(collision);
 
         _anim.SetTrigger("isDead");
@@ -165,10 +169,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<AudioSource>().volume = AudioSettings.audioSettings.SoundVolume;
-
         if (GameManager.gameManagerSingleton.GetGameState() != GameManager.GameState.Running) 
-        { GetComponent<AudioSource>().enabled = false; return; }
+        { _runningAudio.enabled = false; return; }
 
         if (transform.position.y > 8)
         {
@@ -210,7 +212,8 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Mathf.Abs(swipeDistanceSide) > _minSwipeDistance)
                     {
-                        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ArjunSlidingLeftRight, transform, AudioSettings.audioSettings.SoundVolume);
+                        AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.ArjunSlidingLeftRight, 
+                            transform, AudioSettings.audioSettings.SoundVolume);
                         // Check swipe direction
                         if (swipeDistanceSide < 0)
                         {
@@ -411,13 +414,13 @@ public class PlayerController : MonoBehaviour
     {  
         if (!_inAir)
         {
-            GetComponent<AudioSource>().enabled = false;
+           _runningAudio.enabled = false;
             _inAir = true;
             StopAllCoroutines();
             StartCoroutine(JumpCoroutine());
             _anim.SetBool("isJumping", true);
             _anim.SetBool("isSliding", false); //  this is done because the animation after jumping doesnt go back to sliding
-            GetComponent<CapsuleCollider>().height = _capsulColliderHeightAtStart;
+            _capsuleCollider.height = _capsulColliderHeightAtStart;
             AudioPlayer.audioPlayerSingle.PlayAudioOnce(GameManager.gameManagerSingleton.audioData.Jump, transform, AudioSettings.audioSettings.SoundVolume);
         }
     }
@@ -514,14 +517,14 @@ public class PlayerController : MonoBehaviour
             float newHeight = Mathf.Lerp(initialColliderSize, targetHeight, normalizedTime);
 
             // Update the collider size
-            GetComponent<CapsuleCollider>().height = newHeight;
+            _capsuleCollider.height = newHeight;
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // Make sure to set the exact target size to avoid any inaccuracies
-        GetComponent<CapsuleCollider>().height = targetHeight;
+        _capsuleCollider.height = targetHeight;
 
         // Start the coroutine to increase the collider size back to normal
         StartCoroutine(IncreaseColliderSizeCoroutine(slideDuration));
@@ -533,7 +536,7 @@ public class PlayerController : MonoBehaviour
         _anim.SetBool("isSliding", false);
 
         // Store the current and target collider sizes
-        float targetColliderSize = GetComponent<CapsuleCollider>().height*2.5f; // You need to set this variable to the original collider size in the Start or Awake method.
+        float targetColliderSize = _capsuleCollider.height*2.5f; // You need to set this variable to the original collider size in the Start or Awake method.
 
         float elapsedTime = 0f;
 
@@ -542,14 +545,14 @@ public class PlayerController : MonoBehaviour
             float newHeight = targetColliderSize;
 
             // Update the collider size
-            GetComponent<CapsuleCollider>().height = newHeight;
+            _capsuleCollider.height = newHeight;
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // Make sure to set the exact target size to avoid any inaccuracies
-        GetComponent<CapsuleCollider>().height = targetColliderSize;
+        _capsuleCollider.height = targetColliderSize;
     }
 
     private int CounEnabledPlatforms() // this function is for counting howmany platfomrs are active in gameview ain game time and the tag is helping us to get idea

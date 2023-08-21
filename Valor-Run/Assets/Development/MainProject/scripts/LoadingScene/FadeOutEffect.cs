@@ -15,7 +15,7 @@ public class FadeOutEffect : MonoBehaviour
     {
         while (_color.a> 0f)
         {
-            float newAlpha = Mathf.Clamp01(_color.a - (2 * Time.deltaTime));
+            float newAlpha = Mathf.Clamp01(_color.a - (1 * Time.deltaTime));
             _color = new Color(_color.r, _color.g, _color.b, newAlpha);
             GetComponent<RawImage>().color = _color;
 
