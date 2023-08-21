@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManagerSingleton;
@@ -35,6 +36,15 @@ public class GameManager : MonoBehaviour
 
     public AudioData audioData;
     public VFXData vfxData;
+
+    public float timeScaleValue;
+
+    public TMP_Text _timerText;
+    public GameObject _pauseScreen;
+    // cache for better performance
+    AudioSource _mainMenuSource;
+    AudioSource _gameMenuSorce;
+
     public enum GameState
     {
         InMenu,
@@ -46,7 +56,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        timeScaleValue = 1f;
+
+        _mainMenuSource = _menuUI.GetComponent<AudioSource>();
+        _gameMenuSorce = _inGameUi.GetComponent<AudioSource>();
+
         SetGameState(GameManager.GameState.InMenu);
+
         StartGameButton.onClick.AddListener(StartGame);
         Retry.onClick.AddListener(ResetScene);
     }
@@ -101,6 +117,7 @@ public class GameManager : MonoBehaviour
             return;
 
         wings += s;
+
         if (WingsCollected != null)
         {
             WingsCollected.text = wings.ToString();
@@ -127,17 +144,17 @@ public class GameManager : MonoBehaviour
     {
         if (_menuUI.activeInHierarchy)
         {
-            _menuUI.GetComponent<AudioSource>().volume = AudioSettings.audioSettings.LobbyMusic;
+            _mainMenuSource.volume = AudioSettings.audioSettings.LobbyMusic;
         }
 
         if (_inGameUi.activeInHierarchy)
         {
-            _inGameUi.GetComponent<AudioSource>().volume = AudioSettings.audioSettings.InGameMusic;
+            _gameMenuSorce.volume = AudioSettings.audioSettings.InGameMusic;
         }
 
         if (gameState == GameState.Running)
         {
-            distanceInFloat += 3 * Time.deltaTime;
+            distanceInFloat += 4*Time.deltaTime;
         }
     }
 
@@ -145,13 +162,29 @@ public class GameManager : MonoBehaviour
    {
         Time.timeScale = 0f;
         touchDisabled = true;
+        PlayerController._playerController._runningAudio.enabled = false;
    }
 
     public void ResumeGame()
     {
-        Time.timeScale = 1f;
+      //StartCoroutine(ResumeGameCorutine());
+        _timerText.gameObject.SetActive(true);
+        PlayerController._playerController._runningAudio.enabled = true; /// might create a r=proble as when pause din mid air
+        _pauseScreen.SetActive(false);
+        Time.timeScale = timeScaleValue;
         touchDisabled = false;
     }
+
+    // use animations here 
+
+    //IEnumerator  ResumeGameCorutine()
+    //{
+    //    _timerText.gameObject.SetActive(true);
+            
+    //    _pauseScreen.SetActive(false);
+    //    Time.timeScale = timeScaleValue;
+    //    touchDisabled = false;
+    //}
 
     public void UpdateRetryScreen()
     {
