@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnvironmentAndObstaclesController : MonoBehaviour
 {
-    [SerializeField] GameObject[] _obstacleList;
+    public GameObject[] _obstacleList;
     [SerializeField] GameObject[] _environment;
     int indexObs;
     int indexEnv;

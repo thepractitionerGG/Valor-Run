@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _minSwipeDistance = 10f;
     [SerializeField] float _jumpDuration;
     [SerializeField] float _jumpSpeed;
-    
+    [SerializeField] GameObject _errorRetry;
     public Rigidbody _rb;
     CapsuleCollider _capsuleCollider;
     public AudioSource _runningAudio;
@@ -75,19 +75,43 @@ public class PlayerController : MonoBehaviour
 
     public void DeathSequence(string collision)
     {
-        // do the shlock tranissiton here #
         _runningAudio.enabled = false;
         VfxAndAudio(collision);
 
+        _anim.SetBool("isRunning",false);
         _anim.SetTrigger("isDead");
         SaveScore();
-        GameManager.gameManagerSingleton.UpdateRetryScreen();
 
+        GameManager.gameManagerSingleton.UpdateRetryScreen();
         GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.InMenu);
         GameManager.gameManagerSingleton._retryUI.SetActive(true);
         GameManager.gameManagerSingleton._inGameUi.SetActive(false);
 
         _rb.useGravity = true;
+    }
+
+
+    public void OnRetryClicked() /// mark it in progress
+    {
+        if (PlayerPrefs.GetInt("WingsCount", 0) < 1)
+        {
+            _errorRetry.SetActive(true);
+        }
+
+        if (PlayerPrefs.GetInt("WingsCount", 0) >= 1)
+        {
+            Debug.Log(_curretPlatorm.transform.parent.name);
+            //for(int i=0;i< _curretPlatorm.GetComponent<EnvironmentAndObstaclesController>()._obstacleList.Length; i++)
+            //{
+            //    _curretPlatorm.GetComponent<EnvironmentAndObstaclesController>()._obstacleList[i].SetActive(false);
+            //}
+            
+            _anim.SetBool("isRunning", true);
+            GameManager.gameManagerSingleton._retryUI.SetActive(false);
+            GameManager.gameManagerSingleton._inGameUi.SetActive(true);
+            GameManager.gameManagerSingleton.SetGameState(GameManager.GameState.Running);
+
+        }
     }
 
     private void SaveScore()
