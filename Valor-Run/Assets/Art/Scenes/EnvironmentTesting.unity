@@ -90939,10 +90939,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: platformZThin_60Unit 08Enviro
       objectReference: {fileID: 0}
-    - target: {fileID: 5988187756975411968, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6364010295671425466, guid: 31effefcc41aa8e448063ebee54f0070, type: 3}
       propertyPath: m_RootOrder
       value: 12
