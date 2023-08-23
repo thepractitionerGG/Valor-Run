@@ -81168,6 +81168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformZ_60Unit 01 Enviro
       objectReference: {fileID: 0}
+    - target: {fileID: 4629135599750311674, guid: 1781addf89af1fd4390e9f3d07578d15, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5437585147665527872, guid: 1781addf89af1fd4390e9f3d07578d15, type: 3}
       propertyPath: m_RootOrder
       value: 5
