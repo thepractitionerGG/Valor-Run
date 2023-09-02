@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4973710895688111622}
   m_Layer: 0
   m_Name: platformZThin_60Unit 08Enviro
-  m_TagString: platformZThin
+  m_TagString: platformStraight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 5155589152946039483}
   - {fileID: 6118783576804113249}
   - {fileID: 2588270823875464571}
+  - {fileID: 4551881467568066059}
 --- !u!1001 &750932477632253610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +181,11 @@ PrefabInstance:
 --- !u!4 &4551881467568066058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3837156011505287328, guid: d0cee94abaed0174297fa8a099c020ad, type: 3}
+  m_PrefabInstance: {fileID: 750932477632253610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4551881467568066059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3837156011505287329, guid: d0cee94abaed0174297fa8a099c020ad, type: 3}
   m_PrefabInstance: {fileID: 750932477632253610}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1467172717238958875

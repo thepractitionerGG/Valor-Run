@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         timeScaleValue = 1f;
-
+        Time.timeScale = 1f;
         _mainMenuSource = _menuUI.GetComponent<AudioSource>();
         _gameMenuSorce = _inGameUi.GetComponent<AudioSource>();
 
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         gameState = GameState.Running;
-        _timerText.gameObject.SetActive(true);
+        //_timerText.gameObject.SetActive(true);
         PlayerController._playerController._runningAudio.enabled = true; /// might create a r=proble as when pause din mid air
         _pauseScreen.SetActive(false);
         Time.timeScale = timeScaleValue;
