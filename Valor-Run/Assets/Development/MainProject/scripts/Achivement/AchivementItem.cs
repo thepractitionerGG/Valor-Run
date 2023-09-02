@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class AchivementItem : MonoBehaviour
 {
-    RawImage _firstImage;
-    RawImage _scecondImage;
-    Slider progressbar;
+    [SerializeField] RawImage _firstImage;
+    [SerializeField] RawImage _scecondImage;
+    [SerializeField] TMP_Text _achivementText;
+    [SerializeField] Slider _progressbar;
+
+    [SerializeField] int _target;
+
+    public enum AchivementSatate
+    {
+       Active,
+       Locked,
+       Completed
+    }
 
 
 }
