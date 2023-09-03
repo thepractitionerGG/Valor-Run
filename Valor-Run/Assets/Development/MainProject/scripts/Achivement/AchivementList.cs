@@ -5,29 +5,57 @@ using UnityEngine.UI;
 
 public class AchivementList : MonoBehaviour
 {
-   public AchivementItem[] achivementItemDetailsCoin;
+   public  AchivementItem[] achivementItemDetailsCoin;
    public AchivementItem[] achivementItemDetailsSprint;
 
-   [SerializeField] AchivementItem _itemPrefabForCoinAchievement;
-   [SerializeField] AchivementItem _itemPrefabForSprintAchivement;
+    private const string CoinAchievementKey = "CoinAchievementIndex";
+    private const string SprintAchievementKey = "SprintAchievementIndex";
 
-    public Transform _listContentParentForCoin;
-    public Transform _listContentParentForSprint;
-   public void ListPopulatorCoin()
-   {
-       for(int i = 0; i <= achivementItemDetailsCoin.Length; i++)
-       {
-            GameObject achievementItemObjecty= GameObject.Instantiate(new GameObject(), _listContentParentForCoin);
-            achievementItemObjecty.name = "CoinAchivmentItem " + i;
-            achievementItemObjecty.AddComponent<AchivementItem>();
+    private void Start()
+    {
+        // Check and create PlayerPrefs values if they don't exist
+        CheckAndCreatePlayerPrefsValues();
+    }
 
-            achievementItemObjecty.GetComponent<AchivementItem>()._achivementText = achivementItemDetailsCoin[i]._achivementText;
-            achievementItemObjecty.GetComponent<AchivementItem>()._target = achivementItemDetailsCoin[i]._target;
-            achievementItemObjecty.GetComponent<AchivementItem>().IconImage = achivementItemDetailsCoin[i].IconImage;
-            achievementItemObjecty.GetComponent<AchivementItem>().achivementState = achivementItemDetailsCoin[i].achivementState;
+    // Function to check and create PlayerPrefs values with default of zero
+    private void CheckAndCreatePlayerPrefsValues()
+    {
+        if (!PlayerPrefs.HasKey(CoinAchievementKey))
+        {
+            PlayerPrefs.SetInt(CoinAchievementKey, 0);
+        }
 
-       }
-   }
+        if (!PlayerPrefs.HasKey(SprintAchievementKey))
+        {
+            PlayerPrefs.SetInt(SprintAchievementKey, 0);
+        }
+    }
+
+    // Function to update CoinAchievementIndex
+    public void UpdateCoinAchievementIndex(int newValue)
+    {
+        PlayerPrefs.SetInt(CoinAchievementKey, newValue);
+        PlayerPrefs.Save(); // Save the PlayerPrefs to persist the changes
+    }
+
+    // Function to update SprintAchievementIndex
+    public void UpdateSprintAchievementIndex(int newValue)
+    {
+        PlayerPrefs.SetInt(SprintAchievementKey, newValue);
+        PlayerPrefs.Save(); // Save the PlayerPrefs to persist the changes
+    }
+
+    // Function to get the value of CoinAchievementIndex
+    public int GetCoinAchievementIndex()
+    {
+        return PlayerPrefs.GetInt(CoinAchievementKey);
+    }
+
+    // Function to get the value of SprintAchievementIndex
+    public int GetSprintAchievementIndex()
+    {
+        return PlayerPrefs.GetInt(SprintAchievementKey);
+    }
     public enum AchivementState
     {
         Active,
@@ -35,3 +63,4 @@ public class AchivementList : MonoBehaviour
         Completed
     }
 }
+

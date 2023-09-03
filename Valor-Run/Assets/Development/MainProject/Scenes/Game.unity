@@ -1058,8 +1058,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1506575921627512181, guid: 9a18170a94b95d14b83c1199f6a37086, type: 3}
       propertyPath: achivementItemDetailsCoin.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1506575921627512181, guid: 9a18170a94b95d14b83c1199f6a37086, type: 3}
+      propertyPath: achivementItemDetailsCoin.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b2dc1c78edb717743ba0f65c3470c7bb, type: 2}
     - target: {fileID: 1506575921627512202, guid: 9a18170a94b95d14b83c1199f6a37086, type: 3}
       propertyPath: m_RootOrder
       value: 9
