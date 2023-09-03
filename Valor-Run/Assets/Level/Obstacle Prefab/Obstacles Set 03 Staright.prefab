@@ -62752,6 +62752,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ValorWings
       objectReference: {fileID: 0}
+    - target: {fileID: 3382864761793871673, guid: a5b9d82b252ad894e8423e8972c11c23, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b9d82b252ad894e8423e8972c11c23, type: 3}
 --- !u!4 &2032630320798353707 stripped
