@@ -1056,6 +1056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AchivementHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 1506575921627512181, guid: 9a18170a94b95d14b83c1199f6a37086, type: 3}
+      propertyPath: achivementItemDetailsCoin.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1506575921627512202, guid: 9a18170a94b95d14b83c1199f6a37086, type: 3}
       propertyPath: m_RootOrder
       value: 9
