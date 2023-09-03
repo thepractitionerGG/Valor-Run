@@ -6,14 +6,8 @@ using TMPro;
 using static AchivementList;
 
 [System.Serializable]
-public class AchivementItem
+public class AchivementItem:MonoBehaviour
 {
-    //[SerializeField] Slider _progressbar;
-    //[SerializeField] RawImage _locked;
-    //[SerializeField] RawImage _completed;
-    //[SerializeField] RawImage _firstImage;
-    //[SerializeField] RawImage _scecondImage;
-
     public int _target;
     public string _achivementText;
     public AchivementState achivementState;
