@@ -1111,11 +1111,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 129700983, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 129700983, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 129700983, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_AnchorMin.y
@@ -1127,23 +1127,23 @@ PrefabInstance:
       objectReference: {fileID: 1532383008}
     - target: {fileID: 1299025776, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1299025776, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1299025776, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 1503766998, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -937.9488
       objectReference: {fileID: 0}
     - target: {fileID: 1503766998, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1503766998, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1177,6 +1177,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 751090706}
+    - target: {fileID: 7128396782446832061, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8472736431401966225, guid: 4cc30bf796b30f5469acf193a0b29217, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
