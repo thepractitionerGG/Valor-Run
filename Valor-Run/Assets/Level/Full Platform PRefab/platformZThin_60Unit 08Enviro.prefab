@@ -1196,6 +1196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment 24 Thin
       objectReference: {fileID: 0}
+    - target: {fileID: 2504975950643529734, guid: f8aa642d144354b459c93c13de075915, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2504975950643529735, guid: f8aa642d144354b459c93c13de075915, type: 3}
       propertyPath: m_RootOrder
       value: 7
