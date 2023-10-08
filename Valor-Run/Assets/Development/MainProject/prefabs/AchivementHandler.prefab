@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1506575921627512202}
   - component: {fileID: 1506575921627512181}
+  - component: {fileID: 1506575923131675148}
   m_Layer: 0
   m_Name: AchivementHandler
   m_TagString: Untagged
@@ -44,9 +45,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbf14abe1c16284f9473906229ed7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achivementItemDetails:
-  - _target: 0
-    _achivementText: 
-    achivementState: 0
-    IconImage: {fileID: 0}
-  _itemPrefab: {fileID: 4159155441070232649, guid: d127171423f24804aadd44db97ce4ea5, type: 3}
+  achivementItemDetailsCoin:
+  - {fileID: 11400000, guid: 3d911470eefde8e4eaa0f2d35912ba86, type: 2}
+  - {fileID: 11400000, guid: 805faff1413dd494e9b67972c8abb938, type: 2}
+  - {fileID: 11400000, guid: 85ebf5a903defa741b72aa900489d129, type: 2}
+  - {fileID: 11400000, guid: c30c54162801e2f4dbed0c15501674e6, type: 2}
+  - {fileID: 11400000, guid: 4aeddb84a5ea06843804b1ea5ad0d4a1, type: 2}
+  - {fileID: 11400000, guid: b04429a991dba3746a6749c9f6d5b4d0, type: 2}
+  - {fileID: 11400000, guid: 728537d06e1f38c44abd7f7cb8615fcd, type: 2}
+  - {fileID: 11400000, guid: e705bcf4a15396942bd8435dfb463245, type: 2}
+  - {fileID: 11400000, guid: d31194e1019587a479b497adb3af3ea7, type: 2}
+  - {fileID: 11400000, guid: 01ef128ede22558468aab6aed4c4a891, type: 2}
+  - {fileID: 11400000, guid: 737cbabbd5a5cd24ca4bb86bb6269fda, type: 2}
+  achivementItemDetailsSprint:
+  - {fileID: 11400000, guid: c364321a7fffcd849bc55811f3e5e67c, type: 2}
+  - {fileID: 11400000, guid: ac94b0da9f5bcd84a838039285289567, type: 2}
+  - {fileID: 11400000, guid: 3753f39c6c640e04cb5bf0caa43926ee, type: 2}
+  - {fileID: 11400000, guid: c5f61258746acf04189c87ed48d53515, type: 2}
+  - {fileID: 11400000, guid: e753428d6c58df3489d6ab50a5c58f0f, type: 2}
+  - {fileID: 11400000, guid: ec3581cc5b2a56148887b5bcfd263db4, type: 2}
+  - {fileID: 11400000, guid: d5fe73bfd41dcbb458360046366b6d7c, type: 2}
+  - {fileID: 11400000, guid: a442699af4726144e86feb2ecd0cfc26, type: 2}
+  - {fileID: 11400000, guid: 8111c3b02c037e64ab61817189321761, type: 2}
+  - {fileID: 11400000, guid: b0e7e4a41500b32468ead19832a4c329, type: 2}
+  - {fileID: 11400000, guid: 0ef26fcb22636c14da59b4bf4dc25cbe, type: 2}
+  - {fileID: 11400000, guid: efcad5d4cb61c224a87065342697b64c, type: 2}
+  - {fileID: 11400000, guid: fad729bc0fbed914e88684171ade94b3, type: 2}
+--- !u!114 &1506575923131675148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506575921627512180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b16d9ba6bf8eb4ba96e60f08fd0287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinAchivementListParent: {fileID: 0}
+  _achivementListParent: {fileID: 0}
